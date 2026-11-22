@@ -1,0 +1,10 @@
+{
+  "Name": "Pelican Town Privilege",
+  "Author": "peeweeh",
+  "Version": "%ProjectVersion%",
+  "Description": "Personal convenience mod: cheap premium tools, machines, animals, and Junimo Huts from the start. Keeps farming, collecting, and relationships.",
+  "UniqueID": "peeweeh.PelicanTownPrivilege",
+  "EntryDll": "PelicanTownPrivilege.dll",
+  "MinimumApiVersion": "4.5.2",
+  "MinimumGameVersion": "1.6.15"
+}

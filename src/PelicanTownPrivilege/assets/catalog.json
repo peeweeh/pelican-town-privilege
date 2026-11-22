@@ -1,0 +1,44 @@
+{
+  "Description": "Rows added to shops by Pelican Town Privilege. Edit freely, then restart the game. Shop: SeedShop is Pierre's General Store, Blacksmith is Clint. Toggle must be the name of a true/false setting in config.json. ItemId is checked against the installed game; if it is missing or wrong, Name is used to find the item. Anything that still cannot be found is skipped and logged (see ptp_status). Every row is priced by ShopPurchasePrice.",
+  "Entries": [
+    { "Shop": "SeedShop", "Section": "Watering", "Toggle": "EnableWateringStock", "Name": "Iridium Sprinkler", "ItemId": "(BC)645" },
+
+    { "Shop": "SeedShop", "Section": "Animal collection", "Toggle": "EnableAnimalEquipment", "Name": "Auto-Grabber", "ItemId": "(BC)165" },
+    { "Shop": "SeedShop", "Section": "Animal care", "Toggle": "EnableAnimalEquipment", "Name": "Auto-Petter", "ItemId": "(BC)275" },
+
+    { "Shop": "SeedShop", "Section": "Processing", "Toggle": "EnableProcessingMachines", "Name": "Keg", "ItemId": "(BC)12" },
+    { "Shop": "SeedShop", "Section": "Processing", "Toggle": "EnableProcessingMachines", "Name": "Preserves Jar", "ItemId": "(BC)15" },
+    { "Shop": "SeedShop", "Section": "Processing", "Toggle": "EnableProcessingMachines", "Name": "Mayonnaise Machine", "ItemId": "(BC)24" },
+    { "Shop": "SeedShop", "Section": "Processing", "Toggle": "EnableProcessingMachines", "Name": "Cheese Press", "ItemId": "(BC)16" },
+
+    { "Shop": "SeedShop", "Section": "Storage", "Toggle": "EnableStorageStock", "Name": "Chest", "ItemId": "(BC)130" },
+    { "Shop": "SeedShop", "Section": "Storage", "Toggle": "EnableStorageStock", "Name": "Big Chest", "ItemId": "(BC)232" },
+    { "Shop": "SeedShop", "Section": "Storage", "Toggle": "EnableStorageStock", "Name": "Junimo Chest" },
+
+    { "Shop": "SeedShop", "Section": "Rare eggs", "Toggle": "EnableRareEggStock", "Name": "Dinosaur Egg", "ItemId": "(O)107" },
+    { "Shop": "SeedShop", "Section": "Rare eggs", "Toggle": "EnableRareEggStock", "Name": "Void Egg", "ItemId": "(O)305" },
+    { "Shop": "SeedShop", "Section": "Rare eggs", "Toggle": "EnableRareEggStock", "Name": "Golden Egg", "ItemId": "(O)928" },
+    { "Shop": "SeedShop", "Section": "Rare eggs", "Toggle": "EnableRareEggStock", "Name": "Ostrich Egg", "ItemId": "(O)289" },
+    { "Shop": "SeedShop", "Section": "Incubation", "Toggle": "EnableRareEggStock", "Name": "Ostrich Incubator" },
+
+    { "Shop": "SeedShop", "Section": "Universal gift selection", "Toggle": "EnableGiftStock", "Name": "Golden Pumpkin", "ItemId": "(O)125" },
+    { "Shop": "SeedShop", "Section": "Universal gift selection", "Toggle": "EnableGiftStock", "Name": "Pearl", "ItemId": "(O)797" },
+    { "Shop": "SeedShop", "Section": "Universal gift selection", "Toggle": "EnableGiftStock", "Name": "Prismatic Shard", "ItemId": "(O)74" },
+    { "Shop": "SeedShop", "Section": "Universal gift selection", "Toggle": "EnableGiftStock", "Name": "Rabbit's Foot", "ItemId": "(O)446" },
+    { "Shop": "SeedShop", "Section": "Universal gift selection", "Toggle": "EnableGiftStock", "Name": "Magic Rock Candy" },
+    { "Shop": "SeedShop", "Section": "Friendship shortcut", "Toggle": "EnableGiftStock", "Name": "Stardrop Tea" },
+
+    { "Shop": "SeedShop", "Section": "Galaxy weapons", "Toggle": "EnableGalaxyWeapons", "Name": "Galaxy Sword" },
+    { "Shop": "SeedShop", "Section": "Galaxy weapons", "Toggle": "EnableGalaxyWeapons", "Name": "Galaxy Dagger" },
+    { "Shop": "SeedShop", "Section": "Galaxy weapons", "Toggle": "EnableGalaxyWeapons", "Name": "Galaxy Hammer" },
+
+    { "Shop": "SeedShop", "Section": "Wide-area farming tools", "Toggle": "EnableWideHoe", "Name": "Hoe", "ItemId": "(T)Hoe", "DisplayName": "Privilege Hoe", "ModData": { "PelicanTownPrivilege/Tool": "WideHoe" } },
+    { "Shop": "SeedShop", "Section": "Wide-area farming tools", "Toggle": "EnableWidePlanter", "Name": "Hoe", "ItemId": "(T)Hoe", "DisplayName": "Privilege Planter", "ModData": { "PelicanTownPrivilege/Tool": "WidePlanter" } },
+
+    { "Shop": "Blacksmith", "Section": "Premium tools", "Toggle": "EnablePremiumTools", "ItemId": "(T)IridiumAxe" },
+    { "Shop": "Blacksmith", "Section": "Premium tools", "Toggle": "EnablePremiumTools", "ItemId": "(T)IridiumPickaxe" },
+    { "Shop": "Blacksmith", "Section": "Premium tools", "Toggle": "EnablePremiumTools", "ItemId": "(T)IridiumHoe" },
+    { "Shop": "Blacksmith", "Section": "Premium tools", "Toggle": "EnablePremiumTools", "ItemId": "(T)IridiumWateringCan" },
+    { "Shop": "Blacksmith", "Section": "Premium tools", "Toggle": "EnablePremiumTools", "Name": "Trash", "ItemId": "(O)168", "DisplayName": "Iridium Trash Can upgrade", "Condition": "PLAYER_HAS_TRASH_CAN_LEVEL Current 0 3", "ModData": { "PelicanTownPrivilege/Action": "UpgradeTrashCan" } }
+  ]
+}

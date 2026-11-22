@@ -1,0 +1,80 @@
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using StardewValley;
+using StardewValley.TerrainFeatures;
+using PelicanTownPrivilege.Configuration;
+
+namespace PelicanTownPrivilege.Tools
+{
+    /// <summary>Geometry and target rules for the 9x1 wide strip used by the Privilege Hoe and Planter.</summary>
+    public static class ToolFootprint
+    {
+        public const int TileSize = 64;
+
+        /// <summary>
+        /// The strip is centred one tile in front of the player and rotates with facing:
+        /// horizontal when facing up or down, vertical when facing left or right.
+        /// </summary>
+        public static List<Vector2> Compute(Farmer who, int width)
+        {
+            var tiles = new List<Vector2>(width);
+            int half = (width - 1) / 2;
+            Vector2 origin = who.Tile;
+
+            switch (who.FacingDirection)
+            {
+                case 0: // up
+                    for (int dx = -half; dx <= half; dx++) tiles.Add(new Vector2(origin.X + dx, origin.Y - 1));
+                    break;
+                case 1: // right
+                    for (int dy = -half; dy <= half; dy++) tiles.Add(new Vector2(origin.X + 1, origin.Y + dy));
+                    break;
+                case 2: // down
+                    for (int dx = -half; dx <= half; dx++) tiles.Add(new Vector2(origin.X + dx, origin.Y + 1));
+                    break;
+                default: // left
+                    for (int dy = -half; dy <= half; dy++) tiles.Add(new Vector2(origin.X - 1, origin.Y + dy));
+                    break;
+            }
+
+            return tiles;
+        }
+
+        public static bool IsAllowedLocation(GameLocation location, ModConfig config)
+        {
+            return location != null && (config.AllowWideToolsOutsideFarmAndGreenhouse || location.IsFarm || location.IsGreenhouse);
+        }
+
+        /// <summary>
+        /// True when the wide hoe may dig this tile: on the map, diggable, empty (or grass, which the hoe clears),
+        /// with no object, building, or character on it. Crops, trees, paths, and existing soil are never touched.
+        /// </summary>
+        public static bool CanTill(GameLocation location, Vector2 tile)
+        {
+            if (!location.isTileOnMap(tile)) return false;
+            if (location.objects.ContainsKey(tile)) return false;
+            if (location.buildings.Any(building => building.occupiesTile(tile))) return false;
+            if (location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Diggable", "Back") == null) return false;
+            if (location.isCharacterAtTile(tile) != null) return false;
+
+            if (location.terrainFeatures.TryGetValue(tile, out TerrainFeature feature))
+                return feature is Grass;
+
+            return true;
+        }
+
+        /// <summary>True when the tile is empty tilled soil that accepts this seed (season and crop rules included).</summary>
+        public static bool TryGetPlantableSoil(GameLocation location, Vector2 tile, string seedId, out HoeDirt soil)
+        {
+            soil = null;
+            if (string.IsNullOrEmpty(seedId) || !location.isTileOnMap(tile)) return false;
+            if (location.objects.ContainsKey(tile)) return false;
+            if (location.buildings.Any(building => building.occupiesTile(tile))) return false;
+            if (!location.terrainFeatures.TryGetValue(tile, out TerrainFeature feature)) return false;
+
+            soil = feature as HoeDirt;
+            return soil != null && soil.crop == null && soil.canPlantThisSeedHere(seedId);
+        }
+    }
+}

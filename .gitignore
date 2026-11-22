@@ -1,0 +1,21 @@
+/references/
+
+# Build output (ModBuildConfig also writes release zips into bin/)
+bin/
+obj/
+*.zip
+
+# IDE and editor files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.swp
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Personal machine overrides (game path etc.). Never commit these.
+stardewvalley.targets
