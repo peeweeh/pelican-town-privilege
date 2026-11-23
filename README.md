@@ -46,15 +46,53 @@ skipped.
 
 ## Build from source
 
+You need the .NET SDK, and SMAPI installed in your game folder. The build reads SMAPI's DLLs from there.
+
+### macOS and Linux
+
 ```bash
 cd src/PelicanTownPrivilege
 dotnet build
 ```
 
-The build needs the .NET SDK, and SMAPI installed in your game folder, because it reads SMAPI's DLLs from there. A
-Release build (`dotnet build -c Release`) also writes a zip to `bin/Release/net6.0/`. Pass `-p:EnableModDeploy=false` to
-skip copying into your game's `Mods` folder. If the build cannot find your game, pass
-`-p:GamePath="/path/to/Stardew Valley"`.
+### Windows
+
+Install the .NET SDK once (approve any UAC prompt), then open a new PowerShell window so that `dotnet` is on your PATH. .NET 10 is the long-term-support release:
+
+```powershell
+winget install Microsoft.DotNet.SDK.10
+dotnet --version
+```
+
+Get the code and build it. If you don't have Git, use **Code > Download ZIP** on the GitHub page and unzip it instead:
+
+```powershell
+git clone https://github.com/peeweeh/pelican-town-privilege.git
+cd pelican-town-privilege\src\PelicanTownPrivilege
+dotnet build
+```
+
+### Game folder
+
+The build finds a Steam install in your main Steam library automatically. If your game is somewhere else (for example, a second Steam drive), create a file named `stardewvalley.targets` in your home folder (`C:\Users\<you>` on Windows, `/Users/<you>` on macOS) with this content, changing the path:
+
+```xml
+<Project>
+  <PropertyGroup>
+    <GamePath>D:\SteamLibrary\steamapps\common\Stardew Valley</GamePath>
+  </PropertyGroup>
+</Project>
+```
+
+This file lives outside the repo, so Git never sees it. It is also easier than `-p:GamePath=...` on the command line, where quoting paths with spaces can be fiddly in PowerShell.
+
+### Options and problems
+
+- `dotnet build -c Release` also writes a zip to `bin/Release/net6.0/` (`bin\Release\net6.0\` on Windows).
+- `-p:EnableModDeploy=false` skips copying the mod into your game's `Mods` folder.
+- If the build says it can't find your game folder, create `stardewvalley.targets` as described above.
+- If the build says the game folder doesn't contain SMAPI, install SMAPI into that folder, then build again.
+- If copying into `Mods` fails with an access error on Windows, run PowerShell as administrator, or use `-p:EnableModDeploy=false` and copy the `PelicanTownPrivilege` folder yourself.
 
 ## Configuration
 

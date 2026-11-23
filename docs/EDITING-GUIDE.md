@@ -17,6 +17,8 @@ file to edit, so you don't have to search the codebase. Read [ARCHITECTURE.md](A
    This compiles the mod and copies it into your game's `Mods` folder. A Release build (`dotnet build -c Release`) also writes a zip to `bin/Release/net6.0/`. Use
    `-p:EnableModDeploy=false` if you don't want the build to touch your game folder.
 
+   On Windows, the SDK install and game-folder setup are in [Build from source](../README.md#build-from-source).
+
 4. Build without installing SMAPI into your game (compile check only): point `GamePath` at a folder that holds the
    game's DLLs and SMAPI's DLLs. For example:
 
