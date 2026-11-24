@@ -19,3 +19,6 @@ Thumbs.db
 
 # Personal machine overrides (game path etc.). Never commit these.
 stardewvalley.targets
+
+# Local copy of the SMAPI installer (third-party binaries). Never commit these.
+/smapi/
