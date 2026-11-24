@@ -7,35 +7,41 @@ using PelicanTownPrivilege.Configuration;
 
 namespace PelicanTownPrivilege.Tools
 {
-    /// <summary>Geometry and target rules for the 9x1 wide strip used by the Privilege Hoe and Planter.</summary>
+    /// <summary>Geometry and target rules for the wide area used by the Privilege Hoe and Planter.</summary>
     public static class ToolFootprint
     {
         public const int TileSize = 64;
 
         /// <summary>
-        /// The strip is centred one tile in front of the player and rotates with facing:
-        /// horizontal when facing up or down, vertical when facing left or right.
+        /// The area starts one tile in front of the player and extends <paramref name="depth"/> tiles forward.
+        /// Across, it is <paramref name="width"/> tiles wide and centred on the player. An even width cannot be
+        /// centred exactly, so it reaches one tile further to the right (or down) than to the left (or up).
+        /// The area rotates with facing.
         /// </summary>
-        public static List<Vector2> Compute(Farmer who, int width)
+        public static List<Vector2> Compute(Farmer who, int width, int depth)
         {
-            var tiles = new List<Vector2>(width);
-            int half = (width - 1) / 2;
+            var tiles = new List<Vector2>(width * depth);
+            int left = (width - 1) / 2;
+            int right = width / 2;
             Vector2 origin = who.Tile;
 
-            switch (who.FacingDirection)
+            for (int step = 1; step <= depth; step++)
             {
-                case 0: // up
-                    for (int dx = -half; dx <= half; dx++) tiles.Add(new Vector2(origin.X + dx, origin.Y - 1));
-                    break;
-                case 1: // right
-                    for (int dy = -half; dy <= half; dy++) tiles.Add(new Vector2(origin.X + 1, origin.Y + dy));
-                    break;
-                case 2: // down
-                    for (int dx = -half; dx <= half; dx++) tiles.Add(new Vector2(origin.X + dx, origin.Y + 1));
-                    break;
-                default: // left
-                    for (int dy = -half; dy <= half; dy++) tiles.Add(new Vector2(origin.X - 1, origin.Y + dy));
-                    break;
+                switch (who.FacingDirection)
+                {
+                    case 0: // up
+                        for (int dx = -left; dx <= right; dx++) tiles.Add(new Vector2(origin.X + dx, origin.Y - step));
+                        break;
+                    case 1: // right
+                        for (int dy = -left; dy <= right; dy++) tiles.Add(new Vector2(origin.X + step, origin.Y + dy));
+                        break;
+                    case 2: // down
+                        for (int dx = -left; dx <= right; dx++) tiles.Add(new Vector2(origin.X + dx, origin.Y + step));
+                        break;
+                    default: // left
+                        for (int dy = -left; dy <= right; dy++) tiles.Add(new Vector2(origin.X - step, origin.Y + dy));
+                        break;
+                }
             }
 
             return tiles;

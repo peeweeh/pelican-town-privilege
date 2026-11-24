@@ -9,8 +9,9 @@ namespace PelicanTownPrivilege.Configuration
     {
         public const int DefaultPrice = 1;
         public const int DefaultStockLimit = 10;
-        public const int DefaultToolWidth = 9;
-        public const int MaxToolWidth = 15;
+        public const int DefaultToolWidth = 10;
+        public const int DefaultToolDepth = 10;
+        public const int MaxToolSize = 15;
         public const string DefaultLoadSeedsKey = "F";
 
         public static ModConfig Load(IModHelper helper, IMonitor monitor)
@@ -61,10 +62,15 @@ namespace PelicanTownPrivilege.Configuration
                 messages.Add($"PrivilegeStockLimit was {config.PrivilegeStockLimit}. It must be at least 1; reset to {DefaultStockLimit}.");
                 config.PrivilegeStockLimit = DefaultStockLimit;
             }
-            if (config.ToolWidth < 1 || config.ToolWidth > MaxToolWidth || config.ToolWidth % 2 == 0)
+            if (config.ToolWidth < 1 || config.ToolWidth > MaxToolSize)
             {
-                messages.Add($"ToolWidth was {config.ToolWidth}. It must be an odd number from 1 to {MaxToolWidth} so the strip can be centred on the player; reset to {DefaultToolWidth}.");
+                messages.Add($"ToolWidth was {config.ToolWidth}. It must be a whole number from 1 to {MaxToolSize}; reset to {DefaultToolWidth}.");
                 config.ToolWidth = DefaultToolWidth;
+            }
+            if (config.ToolDepth < 1 || config.ToolDepth > MaxToolSize)
+            {
+                messages.Add($"ToolDepth was {config.ToolDepth}. It must be a whole number from 1 to {MaxToolSize}; reset to {DefaultToolDepth}.");
+                config.ToolDepth = DefaultToolDepth;
             }
             if (string.IsNullOrWhiteSpace(config.LoadSeedsKey) || !Enum.TryParse(config.LoadSeedsKey.Trim(), true, out SButton _))
             {

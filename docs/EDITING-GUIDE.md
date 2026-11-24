@@ -43,13 +43,13 @@ Changes to `config.json` are picked up the next time the game starts. Changes to
 | Add an item to Pierre's or Clint's shop | `src/PelicanTownPrivilege/assets/catalog.json`, add an entry to `Entries` | See the recipe below. |
 | Remove an item from a shop | `catalog.json`, delete its entry | Existing copies in saves are not affected. |
 | Fix a wrong item ID | `catalog.json`, correct `ItemId` | Run `ptp_status` to confirm. |
-| Change the strip width | `config.json`: `ToolWidth` (odd, 1 to 15) | The tile rules stay the same. |
+| Change the area size | `config.json`: `ToolWidth` and `ToolDepth` (1 to 15) | The tile rules stay the same. |
 | Change the seed-loading key | `config.json`: `LoadSeedsKey` | Use an SMAPI key name, such as `G` or `F5`. |
 | Let the wide tools work in town or the mines | `config.json`: `AllowWideToolsOutsideFarmAndGreenhouse` | Off by default. |
 | Change what counts as a valid tile | `Tools/ToolFootprint.cs` (`CanTill`, `TryGetPlantableSoil`) | Keep the protected-object rules. |
 | Change how tilling behaves | `Services/WideHoeService.cs` | Energy formula is near the top of `Use`. |
 | Change planting or seed loading | `Services/WidePlanterService.cs` | Load and unload are called from `HandleLoadSeedsKey`. |
-| Change the strip preview colours | `Services/FootprintPreview.cs` | Green is valid, red is skipped. |
+| Change the area preview colours | `Services/FootprintPreview.cs` | Green is valid, red is skipped. |
 | Change Junimo Hut rules | `Services/JunimoBuildingService.cs` | Only the `Junimo Hut` entry is touched. |
 | Change Blue Chicken or Dinosaur rules | `Services/AnimalService.cs` | Only those two entries are touched. |
 | Change overnight incubation | `Services/IncubationService.cs` | Coop and Ostrich paths are separate methods. |

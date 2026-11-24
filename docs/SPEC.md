@@ -61,6 +61,7 @@ these added entries.
 | Incubation | Ostrich Incubator |
 | Universal gift selection | Golden Pumpkin, Pearl, Prismatic Shard, Rabbit's Foot, Magic Rock Candy |
 | Friendship shortcut | Stardrop Tea |
+| Crop seeds (added in v0.2) | The crop seeds Pierre normally sells, in any season |
 
 Implementation must validate each item identifier against the installed game version. An invalid entry is skipped with
 a clear log message rather than crashing the shop.
@@ -97,7 +98,7 @@ must apply the appropriate player upgrade instead of creating an unusable invent
 
 ## 4. Wide-area farming tools
 
-Your request was "nine-wide tiller and planter." For v1, define that as a **9×1 strip**, not a 9×9 square.
+Your original request was "nine-wide tiller and planter." v0.1 built that as a **9×1 strip**. Version 0.2 changes it to a **10×10 area** at your request. Its size is set by `ToolWidth` and `ToolDepth`.
 
 ### Privilege Hoe
 
@@ -105,7 +106,7 @@ Your request was "nine-wide tiller and planter." For v1, define that as a **9×1
 | --- | --- |
 | Purchase location | Pierre |
 | Price | 1g |
-| Footprint | Nine tiles across, centred ahead of the player |
+| Footprint | 10 tiles across and 10 deep, starting one tile in front of the player |
 | Orientation | Rotates with player facing |
 | Charge requirement | None |
 | Energy | One normal hoe-use cost per activation |
@@ -127,7 +128,7 @@ The footprint should be visible before use.
 | --- | --- |
 | Purchase location | Pierre |
 | Price | 1g |
-| Footprint | Same nine-tile strip |
+| Footprint | Same 10×10 area |
 | Seed selection | Explicit "Load seeds" interaction |
 | Seed cost | One seed per successfully planted tile |
 | Valid target | Empty, tilled soil that accepts the selected seed |
@@ -253,7 +254,8 @@ Illustrative configuration:
 
   "EnableWideHoe": true,
   "EnableWidePlanter": true,
-  "ToolWidth": 9,
+  "ToolWidth": 10,
+  "ToolDepth": 10,
   "AllowWideToolsOutsideFarmAndGreenhouse": false,
 
   "EnableEarlyJunimoHuts": true,
@@ -346,7 +348,7 @@ save to apply shop discounts.
 | Blue Chicken | Purchasable early and assigned to a valid coop |
 | Incubation | Eligible eggs hatch after one overnight transition |
 | Dinosaur production | Eligible fed dinosaur produces at the configured daily interval |
-| Wide hoe | Affects only valid tiles within the 9×1 footprint |
+| Wide hoe | Affects only valid tiles within the 10×10 area |
 | Wide planter | Consumes exactly one seed per successful planting |
 | Protected objects | No crops, structures, or machines are destroyed |
 | Removal | Stored seeds recovered and custom tool state cleaned successfully |

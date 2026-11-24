@@ -8,7 +8,7 @@ using PelicanTownPrivilege.Tools;
 namespace PelicanTownPrivilege.Services
 {
     /// <summary>
-    /// The Privilege Hoe. One activation tills the whole strip in front of the player and costs the same energy
+    /// The Privilege Hoe. One activation tills the whole area in front of the player and costs the same energy
     /// as one normal hoe activation.
     /// </summary>
     public sealed class WideHoeService
@@ -35,7 +35,7 @@ namespace PelicanTownPrivilege.Services
             hoe.lastUser = who;
 
             int tilled = 0;
-            foreach (Vector2 tile in ToolFootprint.Compute(who, config.ToolWidth))
+            foreach (Vector2 tile in ToolFootprint.Compute(who, config.ToolWidth, config.ToolDepth))
             {
                 if (!ToolFootprint.CanTill(location, tile)) continue;
 

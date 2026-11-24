@@ -20,6 +20,7 @@ namespace PelicanTownPrivilege.Configuration
         public bool EnableRareEggStock { get; set; } = true;
         public bool EnableGiftStock { get; set; } = true;
         public bool EnableGalaxyWeapons { get; set; } = true;
+        public bool EnableCropSeeds { get; set; } = true;
 
         // Clint's Blacksmith (Data/Shops: Blacksmith)
         public bool EnablePremiumTools { get; set; } = true;
@@ -27,7 +28,8 @@ namespace PelicanTownPrivilege.Configuration
         // Wide-area farming tools: Privilege Hoe and Privilege Planter
         public bool EnableWideHoe { get; set; } = true;
         public bool EnableWidePlanter { get; set; } = true;
-        public int ToolWidth { get; set; } = 9;
+        public int ToolWidth { get; set; } = 10;
+        public int ToolDepth { get; set; } = 10;
         public bool AllowWideToolsOutsideFarmAndGreenhouse { get; set; } = false;
         public string LoadSeedsKey { get; set; } = "F";
 

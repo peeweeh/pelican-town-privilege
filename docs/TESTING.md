@@ -31,7 +31,7 @@ Rows 1 to 10 follow the spec table in order. The spec's incubation row is split 
 | 10 | Incubation | Put a Dinosaur Egg in a coop incubator, then sleep. | The egg hatches after one night, with no extra days needed. | Not run |
 | 11 | Incubation (ostrich) | Put an Ostrich Egg in an Ostrich Incubator, then sleep. | The egg hatches after one night, with no extra days needed. This is separate from row 10, because the spec asks for the two systems to be tested apart. | Not run |
 | 12 | Dinosaur production | Feed and pet a dinosaur for several days. | A fed and cared-for dinosaur produces once per day. | Not run |
-| 13 | Wide hoe | Hold the Privilege Hoe on the farm and use it facing up, down, left, and right. | Each use tills up to 9 tiles in a line in front of you. | Not run |
+| 13 | Wide hoe | Hold the Privilege Hoe on the farm and use it facing up, down, left, and right. | Each use tills up to 100 tiles (10 across and 10 deep) in front of you, starting one tile ahead. | Not run |
 | 14 | Wide planter | Load 3 parsnip seeds, then use the planter on a row of tilled soil. | 3 tiles are planted, and exactly 3 seeds are used. | Not run |
 | 15 | Protected objects | Use the wide hoe and planter next to crops, a tree, a chest, and a path. | None of those are removed or changed. | Not run |
 | 16 | Removal | Run `ptp_cleanup` (dry run), then `ptp_cleanup apply` on a copy of the save. | Seeds come back, tags are cleared, and the report says "Ready to load without the mod: YES". | Not run |
@@ -40,7 +40,7 @@ Rows 1 to 10 follow the spec table in order. The spec's incubation row is split 
 
 | # | Check | Pass condition | Result |
 | --- | --- | --- | --- |
-| A1 | Footprint preview | Hold a privilege tool. Strip tiles show green or red, and they rotate as you turn. | Not run |
+| A1 | Footprint preview | Hold a privilege tool. Area tiles show green or red, and they rotate as you turn. | Not run |
 | A2 | Load seeds | Hold seeds and press the Load key. Message shows the seed and total. Seeds leave the inventory. | Not run |
 | A3 | Unload seeds | Hold the planter and press the Load key. All seeds return to the inventory. | Not run |
 | A4 | Planter tooltip | Hover over the planter in the inventory. | The description shows the seed and count. | Not run |
@@ -50,10 +50,11 @@ Rows 1 to 10 follow the spec table in order. The spec's incubation row is split 
 | A8 | Outside the farm | Use a privilege hoe in town. | Nothing changes, and a message says where it works. No energy is used. | Not run |
 | A9 | Energy | Compare one wide-hoe use with one normal hoe use. | Stamina drops by the same amount. | Not run |
 | A10 | Gift warning | Open Pierre's shop. | The warning line is visible above the shop. | Not run |
-| A11 | Invalid config | Set `ToolWidth` to `4` and `ShopPurchasePrice` to `-5`, then start the game. | Both values are corrected, and each correction is logged. | Not run |
+| A11 | Invalid config | Set `ToolWidth` to `16` and `ShopPurchasePrice` to `-5`, then start the game. | Both values are corrected, and each correction is logged. | Not run |
 | A12 | Bad item ID | Change one `ItemId` in `catalog.json` to `(O)999999`. | The row is found by name if it exists. Otherwise it is skipped and logged, and the game keeps running. | Not run |
 | A13 | Multiplayer | Load a multiplayer save. | A warning appears in the log. Nothing else is tested. | Not run |
 | A14 | Selling a loaded planter | Known gap: selling is not blocked in v0.1. Sell a loaded planter to a shop and record what happens. | Recorded in the log below. A failure here is expected until the gap is fixed. | Not run |
+| A15 | Crop seeds | Buy Parsnip Seeds at Pierre's in winter, then try to plant them with the Privilege Planter. | Bought at 1g. Nothing is planted, because parsnip cannot grow in winter. | Not run |
 
 ## Log for this test run
 

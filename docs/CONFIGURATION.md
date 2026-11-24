@@ -10,6 +10,8 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
 **Invalid values:** the mod corrects them to the default, writes the corrected file back, and logs each change as
 `Config corrected: ...` in the SMAPI console.
 
+**Existing installs:** the first run saves every setting, so v0.1 left `"ToolWidth": 9` in your `config.json`. Set `ToolWidth` to `10` and add `ToolDepth`, or delete `config.json` and start the game once to get the new defaults.
+
 ## All settings
 
 ### Pierre's Privilege Counter (Data/Shops: `SeedShop`)
@@ -27,6 +29,7 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
 | `EnableRareEggStock` | `true` | true/false | Dinosaur, Void, Golden, and Ostrich eggs, plus the Ostrich Incubator. |
 | `EnableGiftStock` | `true` | true/false | Universal gift items and Stardrop Tea. |
 | `EnableGalaxyWeapons` | `true` | true/false | Galaxy Sword, Dagger, and Hammer. |
+| `EnableCropSeeds` | `true` | true/false | The crop seeds Pierre normally sells (about 30 kinds), at the privilege price in any season. Planting still follows the season rules. *Added beyond the spec.* |
 
 ### Clint's Blacksmith (Data/Shops: `Blacksmith`)
 
@@ -38,9 +41,10 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
 
 | Setting | Default | Type | What it does |
 | --- | --- | --- | --- |
-| `EnableWideHoe` | `true` | true/false | Privilege Hoe: its shop row and its 9×1 tilling behaviour. |
+| `EnableWideHoe` | `true` | true/false | Privilege Hoe: its shop row and its 10×10 tilling behaviour. |
 | `EnableWidePlanter` | `true` | true/false | Privilege Planter: its shop row, its planting behaviour, and the Load key. |
-| `ToolWidth` | `9` | odd whole number, 1 to 15 | Length of the strip. Must be odd so it can be centred on the player. Other values reset to `9`. |
+| `ToolWidth` | `10` | whole number, 1 to 15 | Width of the area, across the player. Even widths are allowed; they reach one tile further right (or down) than left (or up). Other values reset to `10`. |
+| `ToolDepth` | `10` | whole number, 1 to 15 | How many tiles deep the area reaches, starting one tile in front of the player. Other values reset to `10`. *Added beyond the spec.* |
 | `AllowWideToolsOutsideFarmAndGreenhouse` | `false` | true/false | `false` means the wide tools do nothing outside the farm and greenhouse. `true` allows any location. |
 | `LoadSeedsKey` | `"F"` | a key name from SMAPI's list (for example `F`, `G`, `K`, `F5`) | Key for loading and unloading the planter. Unknown names reset to `F`. *Added beyond the spec.* |
 
@@ -83,10 +87,12 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
   "EnableRareEggStock": true,
   "EnableGiftStock": true,
   "EnableGalaxyWeapons": true,
+  "EnableCropSeeds": true,
   "EnablePremiumTools": true,
   "EnableWideHoe": true,
   "EnableWidePlanter": true,
-  "ToolWidth": 9,
+  "ToolWidth": 10,
+  "ToolDepth": 10,
   "AllowWideToolsOutsideFarmAndGreenhouse": false,
   "LoadSeedsKey": "F",
   "EnableEarlyJunimoHuts": true,

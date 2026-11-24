@@ -3,6 +3,17 @@
 All notable changes to this project are recorded here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+
+- Crop seeds at Pierre's privilege counter: the crop seeds Pierre normally sells, at 1g in any season. Turn them off with `EnableCropSeeds`.
+
+### Changed
+
+- The Privilege Hoe and Planter cover a 10×10 area (`ToolWidth` × `ToolDepth`, both default 10) instead of a 9×1 strip.
+- `ToolWidth` no longer has to be odd. Even widths reach one tile further right (or down) than left (or up).
+
 ## [0.1.0] - 2026-11-23
 
 First build, written from the v0.1 specification. It compiles against Stardew Valley 1.6.15 and SMAPI 4.5.2. It has

@@ -8,7 +8,7 @@ using PelicanTownPrivilege.Tools;
 namespace PelicanTownPrivilege.Services
 {
     /// <summary>
-    /// Draws the 9x1 strip over the world while a privilege tool is held.
+    /// Draws the wide area over the world while a privilege tool is held.
     /// Green means the tile will be used. Red means it will be skipped.
     /// </summary>
     public sealed class FootprintPreview
@@ -37,7 +37,7 @@ namespace PelicanTownPrivilege.Services
             int size = (int)(ToolFootprint.TileSize * Game1.options.zoomLevel);
 
             pixel ??= CreatePixel();
-            foreach (Vector2 tile in ToolFootprint.Compute(who, config.ToolWidth))
+            foreach (Vector2 tile in ToolFootprint.Compute(who, config.ToolWidth, config.ToolDepth))
             {
                 bool valid = allowed && (wide
                     ? ToolFootprint.CanTill(location, tile)

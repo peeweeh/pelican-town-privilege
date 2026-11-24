@@ -11,7 +11,7 @@ namespace PelicanTownPrivilege.Services
 {
     /// <summary>
     /// The Privilege Planter. Seeds are loaded explicitly and stored on the tool. Each activation plants one seed
-    /// per valid empty tilled tile in the strip. Invalid tiles are skipped without using a seed.
+    /// per valid empty tilled tile in the area. Invalid tiles are skipped without using a seed.
     /// </summary>
     public sealed class WidePlanterService
     {
@@ -42,7 +42,7 @@ namespace PelicanTownPrivilege.Services
             }
 
             int planted = 0;
-            foreach (Vector2 tile in ToolFootprint.Compute(who, config.ToolWidth))
+            foreach (Vector2 tile in ToolFootprint.Compute(who, config.ToolWidth, config.ToolDepth))
             {
                 if (planted >= stored) break;
                 if (!ToolFootprint.TryGetPlantableSoil(location, tile, seedId, out HoeDirt soil)) continue;
@@ -60,7 +60,7 @@ namespace PelicanTownPrivilege.Services
             }
             else
             {
-                Feedback.Show($"Nothing planted: no empty tilled soil in the strip accepts {seedName}.");
+                Feedback.Show($"Nothing planted: no empty tilled soil in the area accepts {seedName}.");
             }
             return true;
         }

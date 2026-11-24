@@ -19,9 +19,9 @@ src/PelicanTownPrivilege/
 ├── Services/
 │   ├── ShopService.cs          Adds catalog rows to Data/Shops; draws Pierre's price line and gift warning
 │   ├── PremiumToolService.cs   Applies the Iridium Trash Can upgrade at purchase
-│   ├── WideHoeService.cs       Privilege Hoe: 9x1 tilling
-│   ├── WidePlanterService.cs   Privilege Planter: loading, unloading, and 9x1 planting
-│   ├── FootprintPreview.cs     Draws the strip over the world while a privilege tool is held
+│   ├── WideHoeService.cs       Privilege Hoe: 10x10 tilling
+│   ├── WidePlanterService.cs   Privilege Planter: loading, unloading, and area planting
+│   ├── FootprintPreview.cs     Draws the area over the world while a privilege tool is held
 │   ├── JunimoBuildingService.cs Edits the Junimo Hut entry in Data/Buildings
 │   ├── AnimalService.cs        Edits Blue Chicken and Dinosaur entries in Data/FarmAnimals
 │   ├── IncubationService.cs    Overnight incubation (coop and Ostrich Incubator, separate paths)
@@ -30,7 +30,7 @@ src/PelicanTownPrivilege/
 │   └── Diagnostics.cs          Logging helpers and the ptp_status report
 ├── Tools/
 │   ├── PrivilegeTools.cs       Mod tags on items (modData keys) and seed storage helpers
-│   ├── ToolFootprint.cs        The 9x1 strip geometry and tile rules
+│   ├── ToolFootprint.cs        The wide-area geometry and tile rules
 │   └── LocationScan.cs         Lists every location, including building interiors; on-screen feedback
 └── RuntimeHooks/               The only Harmony patches. Each one checks mod tags first.
     ├── HookServices.cs         Service references the hooks use (set once in ModEntry)
@@ -65,7 +65,7 @@ Shop rows are only appended. Existing rows, and the sale values in `Data/Objects
 | Privilege Hoe tilling | Hoe is used (Harmony prefix on `Hoe.DoFunction`) | `WideHoeService.Use` |
 | Privilege Planter planting | Planter is used (same prefix) | `WidePlanterService.Plant` |
 | Load and unload seeds | Load key pressed (`ButtonPressed`) | `WidePlanterService.HandleLoadSeedsKey` |
-| Strip preview | Every frame, only while a privilege tool is held (`RenderedWorld`) | `FootprintPreview.Draw` |
+| Area preview | Every frame, only while a privilege tool is held (`RenderedWorld`) | `FootprintPreview.Draw` |
 | Names and seed tooltip | Item name and description are read (Harmony postfixes) | `ToolHooks.cs` |
 | Planter cannot be trashed while it holds seeds | Trash check (Harmony postfix on `Item.canBeTrashed`) | `ToolHooks.cs` |
 | Iridium Trash Can upgrade | Purchase (Harmony prefix on `Object.actionWhenPurchased`) | `PremiumToolService.HandleTrashCanPurchase` |
@@ -117,14 +117,14 @@ These were judgement calls made while building v0.1. Change them in code or conf
 - **Outside the farm and greenhouse, both privilege tools do nothing** and show a message. No energy is used.
 - **Energy:** the Privilege Hoe uses the same formula as `Hoe.DoFunction`, once per activation. The planter uses no
   energy, because the spec gives it none.
-- **Strip contents:** grass is cleared by the hoe's own tool action, the same way the normal hoe clears it. Crops,
+- **Area contents:** grass is cleared by the hoe's own tool action, the same way the normal hoe clears it. Crops,
   trees, paths, existing soil, objects, buildings, and characters are never touched.
 - **Seed loading:** hold a seed stack and press the Load key to put the whole stack in your planter. Hold the planter
   and press the key to take everything back out. A planter holds one seed type at a time.
 - **Planter seeds can't be trashed** while the planter holds any. Use the unload key first. Selling is not blocked yet (see Known unknowns).
 - **Iridium Trash Can** sets the trash-can level to Iridium straight away. The shop row is hidden once the player is
   already at Iridium, using the `PLAYER_HAS_TRASH_CAN_LEVEL` game state query.
-- **`ToolWidth` must be odd** (1 to 15) so the strip can be centred on the player.
+- **Area size:** `ToolWidth` and `ToolDepth` are whole numbers from 1 to 15 (default 10). An even width can't be centred exactly, so it reaches one tile further right (or down) than left (or up).
 - **Overnight incubation** sets an egg's remaining time to zero when the day ends. Only eggs already in an incubator
   are affected. The coop path and the Ostrich Incubator path are separate code.
 - **Junimo Hut:** its Wizard build condition is cleared, its cost comes from config, its material list is emptied
@@ -148,7 +148,7 @@ parts most likely to need adjusting:
   resolver covers the rest, and `ptp_status` shows what was skipped.
 - The data keys `Blue Chicken` and `Dinosaur` in `Data/FarmAnimals` are assumed. The mod logs a warning if either is
   missing.
-- The strip preview's screen position, and the planting call with qualified seed IDs, are untested.
+- The area preview's screen position, and the planting call with qualified seed IDs, are untested.
 - The overnight timing for both incubator paths is untested.
 - The trash-can purchase depends on the shop row's `modData` reaching `actionWhenPurchased`. The code path has been
   read, but not run. The item used is `(O)168`, the game's own Trash object. If the tag does not arrive, the player
