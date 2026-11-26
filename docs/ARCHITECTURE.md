@@ -123,9 +123,7 @@ These were judgement calls made while building v0.1. Change them in code or conf
   and pickaxe act as their normal selves there.
 - **Energy:** the Privilege Hoe and Pickaxe use the same formula as `Hoe.DoFunction` and `Pickaxe.DoFunction`, once per
   activation. The planter uses no energy, because the spec gives it none. The scythe adds none: the normal swing's cost applies.
-- **Area contents:** the hoe clears grass itself and tills in the same use, because the game's grass ignores hoes. The
-  scythe cuts grass, clears weeds, and harvests scythe crops. The pickaxe breaks stones, ore, and boulders. Neither the
-  hoe nor the pickaxe removes soil, and neither touches crops, trees, paths, buildings, crafted objects, or characters.
+- **Area contents:** the hoe removes grass and weeds itself and tills in the same use. Grass is cleared directly, because the game's grass ignores hoes. Neither drops anything. The scythe cuts grass, clears weeds, and harvests scythe crops. The pickaxe breaks stones, ore, and boulders. Neither the hoe nor the pickaxe removes soil, and neither touches crops, trees, paths, buildings, crafted objects, or characters.
 - **Seed loading:** hold a seed stack and press the Load key to put the whole stack in your planter. Hold the planter
   and press the key to take everything back out. A planter holds one seed type at a time.
 - **Planter seeds can't be trashed** while the planter holds any. Use the unload key first. Selling is not blocked yet (see Known unknowns).

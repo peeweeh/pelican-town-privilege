@@ -25,6 +25,7 @@ All notable changes to this project are recorded here. The format follows
 
 - The Junimo Hut was missing from Robin's construction menu. The game lists each building only under its builder, and the hut's builder was not Robin. The mod now sets it to Robin.
 - The Privilege Hoe never tilled grass. The game's grass ignores hoes, so planting had no tilled soil to use. The hoe now clears a grass tuft and tills it in the same use. Grass cleared by the hoe drops nothing.
+- The Privilege Hoe skipped weedy tiles. Weeds in the area are now removed and tilled in the same use, like grass. Stones, boulders, and twigs still block tilling.
 
 ## [0.1.0] - 2026-11-23
 

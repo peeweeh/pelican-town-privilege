@@ -43,6 +43,10 @@ namespace PelicanTownPrivilege.Services
                 if (location.terrainFeatures.TryGetValue(tile, out TerrainFeature feature) && feature is Grass)
                     location.terrainFeatures.Remove(tile);
 
+                // Weeds are removed the same way, so a weedy tile is tilled in this use too. They drop nothing.
+                if (location.objects.TryGetValue(tile, out StardewValley.Object weed) && weed.IsWeeds())
+                    location.objects.Remove(tile);
+
                 if (location.makeHoeDirt(tile))
                 {
                     tilled++;

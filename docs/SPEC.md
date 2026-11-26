@@ -113,11 +113,16 @@ Your original request was "nine-wide tiller and planter." v0.1 built that as a *
 | Valid locations | Farm and greenhouse by default |
 | Invalid tiles | Skip without cancelling the whole action |
 
+Cleared before tilling:
+
+- Grass and weeds. The hoe removes them in the same use as it tills, and they drop nothing. The game's grass ignores hoes, so the Privilege Hoe clears it directly.
+
 Protected targets:
 
 - Existing crops.
 - Planted trees.
 - Buildings, machines, paths, and fences.
+- Stones, ore, and boulders. The Privilege Pickaxe breaks these. Twigs need a normal Axe, as in the base game.
 - Occupied or otherwise invalid tiles.
 
 The footprint should be visible before use.

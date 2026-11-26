@@ -54,13 +54,14 @@ namespace PelicanTownPrivilege.Tools
         }
 
         /// <summary>
-        /// True when the wide hoe may dig this tile: on the map, diggable, empty (or grass, which the hoe clears),
-        /// with no object, building, or character on it. Crops, trees, paths, and existing soil are never touched.
+        /// True when the wide hoe may dig this tile: on the map, diggable, empty or holding grass or weeds (the hoe
+        /// clears those first), with no other object, building, or character on it. Crops, trees, paths, and existing
+        /// soil are never touched.
         /// </summary>
         public static bool CanTill(GameLocation location, Vector2 tile)
         {
             if (!location.isTileOnMap(tile)) return false;
-            if (location.objects.ContainsKey(tile)) return false;
+            if (location.objects.TryGetValue(tile, out StardewValley.Object item) && !item.IsWeeds()) return false;
             if (location.buildings.Any(building => building.occupiesTile(tile))) return false;
             if (location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Diggable", "Back") == null) return false;
             if (location.isCharacterAtTile(tile) != null) return false;

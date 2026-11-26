@@ -40,6 +40,8 @@ Rows 1 to 10 follow the spec table in order. The spec's incubation row is split 
 | 19 | Privilege Pickaxe | Stand near a few stones, an ore node, a boulder, a sprinkler, and a tilled tile. Use the Privilege Pickaxe facing each. | Stones break, the boulder breaks after four uses in the same spot, and the sprinkler, soil, and crops stay. | Not run |
 | 20 | Pickaxe outside the farm | Use the Privilege Pickaxe in the mines on a stone. | It breaks only that stone, as a normal Iridium pickaxe. There is no area and no message. | Not run |
 | 21 | Shop rows | Open Pierre's shop. | Privilege Scythe and Privilege Pickaxe are listed at 1g each. | Not run |
+| 22 | Wide hoe on weeds | Stand on weedy ground on the farm, and use the Privilege Hoe facing it. | Weeds are removed and the same tiles are tilled in that use. | Not run |
+| 23 | Twigs block tilling | Use the Privilege Hoe facing a twig. | The twig stays and its tile stays untilled. A normal Axe clears twigs. | Not run |
 
 ## Additional checks
 
