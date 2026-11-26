@@ -365,7 +365,7 @@ save to apply shop discounts.
 
 **Milestone 2: Buildings and animals**
 
-- Early 1g Junimo Huts.
+- Early Junimo Huts (free from v0.2; 1g in v0.1).
 - Early blue chickens.
 - Rare egg inventory.
 - Overnight incubation.
