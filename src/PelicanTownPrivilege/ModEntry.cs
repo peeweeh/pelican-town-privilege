@@ -20,6 +20,7 @@ namespace PelicanTownPrivilege
         private Diagnostics diagnostics;
         private ShopService shops;
         private JunimoBuildingService junimoHuts;
+        private PetBowlService petBowl;
         private AnimalService animals;
         private IncubationService incubation;
         private WidePlanterService planter;
@@ -38,6 +39,7 @@ namespace PelicanTownPrivilege
 
             shops = new ShopService(config, catalog, resolver, diagnostics);
             junimoHuts = new JunimoBuildingService(config, diagnostics);
+            petBowl = new PetBowlService(config, diagnostics);
             animals = new AnimalService(config, diagnostics);
             incubation = new IncubationService(config, diagnostics);
             planter = new WidePlanterService(config);
@@ -76,7 +78,10 @@ namespace PelicanTownPrivilege
             if (e.NameWithoutLocale.IsEquivalentTo("Data/Shops"))
                 e.Edit(asset => shops.EditShops(asset));
             else if (e.NameWithoutLocale.IsEquivalentTo("Data/Buildings"))
+            {
                 e.Edit(asset => junimoHuts.EditBuildings(asset));
+                e.Edit(asset => petBowl.EditBuildings(asset));
+            }
             else if (e.NameWithoutLocale.IsEquivalentTo("Data/FarmAnimals"))
                 e.Edit(asset => animals.EditFarmAnimals(asset));
         }

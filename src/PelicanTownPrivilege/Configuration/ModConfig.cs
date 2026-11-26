@@ -43,6 +43,10 @@ namespace PelicanTownPrivilege.Configuration
         public bool JunimoHutRequiresMaterials { get; set; } = false;
         public bool InstantJunimoConstruction { get; set; } = true;
 
+        // The dog's Pet Bowl (Data/Buildings: Pet Bowl), listed in Robin's menu
+        public bool EnablePetBowl { get; set; } = true;
+        public int PetBowlPrice { get; set; } = 0;
+
         // Marnie's shop and incubation (Data/FarmAnimals and incubator machines)
         public bool EnableEarlyBlueChickens { get; set; } = true;
         public int BlueChickenPrice { get; set; } = 1;

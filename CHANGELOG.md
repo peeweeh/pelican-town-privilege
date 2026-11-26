@@ -12,7 +12,8 @@ All notable changes to this project are recorded here. The format follows
 - Privilege Scythe at Pierre's privilege counter, 1g. After each swing, it cuts grass, clears weeds, and harvests ripe scythe crops across the 9×9 area. Soil is never removed, and the normal swing and combat are unchanged. Turn it off with `EnableWideScythe`.
 - Privilege Pickaxe at Pierre's privilege counter, 1g. It is built on the Iridium Pickaxe, so it can break boulders. One use breaks every stone, ore node, and boulder in the 9×9 area. Soil, crops, trees, and crafted objects are never touched. Outside the farm and greenhouse it works as a normal pickaxe. Turn it off with `EnableWidePickaxe`.
 - Privilege Axe at Pierre's privilege counter, 1g. It is built on the Iridium Axe. One use chops every tree in the 9×9 area, breaks every stump and log, and clears every twig and weed. Fruit trees, crops, soil, buildings, and crafted objects are never touched. Outside the farm and greenhouse it works as a normal axe. Turn it off with `EnableWideAxe`.
-- Privilege Iridium Sprinkler at Pierre's watering counter, 1g. It waters a 9×9 area with the sprinkler in the middle, instead of the Iridium Sprinkler's 5×5. Turn the area off with `EnableWideSprinkler`.
+- Privilege Iridium Sprinkler at Pierre's watering counter, 1g. It waters a 9×9 area with the sprinkler in the middle, instead of the vanilla Iridium Sprinkler's smaller area. Turn the area off with `EnableWideSprinkler`.
+- Pet Bowl in Robin's construction menu, 0g, no materials, instant construction. Water it each day with a watering can for +6 friendship. Turn it off with `EnablePetBowl`; change the price with `PetBowlPrice`.
 
 ### Changed
 

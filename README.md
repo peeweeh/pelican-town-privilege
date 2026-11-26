@@ -16,6 +16,7 @@ The principle: keep the farming, collecting, relationships, and exploration. Rem
 | Pierre's General Store | Privilege Hoe, Privilege Planter, Privilege Scythe, and Privilege Pickaxe (wide-area farming tools) | 1g each |
 | Clint's Blacksmith | Iridium Axe, Pickaxe, Hoe, Watering Can, and the Iridium Trash Can upgrade | 1g each |
 | Robin's construction menu | Junimo Hut, with no Wizard requirement, no materials, and instant construction. Junimo helpers come out on their own (up to 3 per hut) when crops within 8 tiles are ripe. | 0g |
+| Robin's construction menu | Pet Bowl for your dog. Water it each day with a watering can for +6 friendship. | 0g |
 | Marnie's animal shop | Blue Chicken, available from the start | 1g |
 
 Also:
@@ -25,6 +26,7 @@ Also:
   boulders. The Privilege Axe chops trees and stumps and clears twigs and weeds. Stones and boulders block tilling: clear them with the Pickaxe. The
   area rotates with your facing, and a preview shows which tiles will be used.
 - **Privilege Iridium Sprinkler.** Waters a 9×9 area, with the sprinkler in the middle.
+- **Pet care.** Water the Pet Bowl each day with a watering can. A watered bowl gives your dog +6 friendship a day. Without a bowl, your dog loses 10 friendship a day.
 - **Overnight incubation.** Eggs in coop incubators and Ostrich Incubators finish when the day ends.
 - **Daily Dinosaur eggs.** A fed, cared-for dinosaur produces once a day.
 - **Save cleanup.** `ptp_cleanup` returns planter seeds and clears the mod's tags, so a save can load without the mod.

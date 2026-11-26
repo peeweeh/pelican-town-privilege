@@ -107,6 +107,8 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
   "JunimoHutPrice": 0,
   "JunimoHutRequiresMaterials": false,
   "InstantJunimoConstruction": true,
+  "EnablePetBowl": true,
+  "PetBowlPrice": 0,
   "EnableEarlyBlueChickens": true,
   "BlueChickenPrice": 1,
   "EnableOvernightIncubation": true,
@@ -114,6 +116,13 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
   "EnableDebugLogging": false
 }
 ```
+
+### The dog's Pet Bowl
+
+| Setting | Default | Type | What it does |
+| --- | --- | --- | --- |
+| `EnablePetBowl` | `true` | true/false | Pet Bowl: listed in Robin's menu, instant, with no materials. |
+| `PetBowlPrice` | `0` | whole number, 0 or more | Price of the Pet Bowl in Robin's menu. Negative values reset to `0`. |
 
 ## Turning a section off
 

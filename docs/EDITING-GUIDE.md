@@ -55,6 +55,7 @@ Changes to `config.json` are picked up the next time the game starts. Changes to
 | Change planting or seed loading | `Services/WidePlanterService.cs` | Load and unload are called from `HandleLoadSeedsKey`. |
 | Change the area preview colours | `Services/FootprintPreview.cs` | Green is valid, red is skipped. |
 | Change Junimo Hut rules | `Services/JunimoBuildingService.cs` | Only the `Junimo Hut` entry is touched. |
+| Change Pet Bowl rules | `Services/PetBowlService.cs` | Only the `Pet Bowl` entry is touched. |
 | Change Blue Chicken or Dinosaur rules | `Services/AnimalService.cs` | Only those two entries are touched. |
 | Change overnight incubation | `Services/IncubationService.cs` | Coop and Ostrich paths are separate methods. |
 | Change the gift warning or price line | `Services/ShopService.cs` (`GiftWarning`, `DrawCounterNotes`) | Text is plain English. |

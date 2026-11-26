@@ -26,6 +26,7 @@ src/PelicanTownPrivilege/
 │   ├── WideAxeService.cs       Privilege Axe: area chopping of trees, stumps, logs, twigs, and weeds
 │   ├── FootprintPreview.cs     Draws the area over the world while a privilege tool is held
 │   ├── JunimoBuildingService.cs Edits the Junimo Hut entry in Data/Buildings
+│   ├── PetBowlService.cs       Edits the Pet Bowl entry in Data/Buildings
 │   ├── AnimalService.cs        Edits Blue Chicken and Dinosaur entries in Data/FarmAnimals
 │   ├── IncubationService.cs    Overnight incubation (coop and Ostrich Incubator, separate paths)
 │   ├── SaveMigrationService.cs Makes a save backup before any change to a save

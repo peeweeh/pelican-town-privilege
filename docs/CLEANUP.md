@@ -11,7 +11,7 @@ still holds them has to be cleaned before it can load without the mod. `ptp_clea
 | Item | Without the mod | Notes |
 | --- | --- | --- |
 | Shop rows you bought (Iridium tools, sprinklers, machines, eggs, weapons) | Ordinary items. Nothing to clean. | Future purchases stop being discounted. Existing items are not taken back. |
-| Junimo Huts, Blue Chickens, Ostrich Incubators, and other buildings or animals | Ordinary buildings and animals. Nothing to clean. | The Wizard requirement and purchase price only applied when buying. |
+| Junimo Huts, Pet Bowls, Blue Chickens, Ostrich Incubators, and other buildings or animals | Ordinary buildings and animals. Nothing to clean. | The Wizard requirement and purchase price only applied when buying. |
 | Privilege Hoe | Behaves as a normal hoe. | Its tags are removed by `ptp_cleanup apply`. |
 | Privilege Planter | Behaves as a normal hoe, so it would till instead of plant. | Its stored seeds are returned to you by `ptp_cleanup apply`. Its tags are then removed. |
 | Privilege Scythe | Behaves as a normal scythe. | Its tags are removed by `ptp_cleanup apply`. |

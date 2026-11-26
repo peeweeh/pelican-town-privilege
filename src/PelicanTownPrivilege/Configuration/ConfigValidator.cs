@@ -9,6 +9,7 @@ namespace PelicanTownPrivilege.Configuration
     {
         public const int DefaultPrice = 1;
         public const int DefaultJunimoHutPrice = 0;
+        public const int DefaultPetBowlPrice = 0;
         public const int DefaultStockLimit = 10;
         public const int DefaultToolWidth = 9;
         public const int DefaultToolDepth = 9;
@@ -52,6 +53,11 @@ namespace PelicanTownPrivilege.Configuration
             {
                 messages.Add($"JunimoHutPrice was {config.JunimoHutPrice}. Negative prices are not allowed; reset to {DefaultJunimoHutPrice}.");
                 config.JunimoHutPrice = DefaultJunimoHutPrice;
+            }
+            if (config.PetBowlPrice < 0)
+            {
+                messages.Add($"PetBowlPrice was {config.PetBowlPrice}. Negative prices are not allowed; reset to {DefaultPetBowlPrice}.");
+                config.PetBowlPrice = DefaultPetBowlPrice;
             }
             if (config.BlueChickenPrice < 0)
             {

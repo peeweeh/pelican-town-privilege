@@ -235,6 +235,16 @@ Your cheap sprinklers handle watering. Junimos handle harvesting. The wide plant
 
 That is the agreed convenience package without quietly building a second automation overhaul.
 
+### The dog's Pet Bowl
+
+| Setting | Behaviour |
+| --- | --- |
+| Purchase location | Robin's construction menu |
+| Price | 0g by default (`PetBowlPrice`) |
+| Materials | None |
+| Construction | Instant |
+| Care | Water it each day with a watering can for +6 friendship. A pet without a bowl loses 10 friendship a day. |
+
 ## 6. Animals and incubation
 
 ### Marnie's animal shop
@@ -323,6 +333,8 @@ Illustrative configuration:
   "JunimoHutPrice": 0,
   "JunimoHutRequiresMaterials": false,
   "InstantJunimoConstruction": true,
+  "EnablePetBowl": true,
+  "PetBowlPrice": 0,
 
   "EnableEarlyBlueChickens": true,
   "BlueChickenPrice": 1,
