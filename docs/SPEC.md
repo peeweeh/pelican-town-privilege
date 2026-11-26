@@ -152,7 +152,7 @@ Add Junimo Hut access with these settings:
 | --- | --- |
 | Availability | From the beginning |
 | Wizard quest requirement | Removed for this purchase |
-| Cost | 1g |
+| Cost | 0g (changed in v0.2 from 1g) |
 | Materials | None |
 | Construction time | Instant |
 | Placement | Normal building-placement interaction |
@@ -259,7 +259,7 @@ Illustrative configuration:
   "AllowWideToolsOutsideFarmAndGreenhouse": false,
 
   "EnableEarlyJunimoHuts": true,
-  "JunimoHutPrice": 1,
+  "JunimoHutPrice": 0,
   "JunimoHutRequiresMaterials": false,
   "InstantJunimoConstruction": true,
 

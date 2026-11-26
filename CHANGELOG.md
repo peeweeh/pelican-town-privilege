@@ -15,6 +15,11 @@ All notable changes to this project are recorded here. The format follows
 - The Privilege Hoe and Planter cover a 10×10 area (`ToolWidth` × `ToolDepth`, both default 10) instead of a 9×1 strip.
 - `ToolWidth` no longer has to be odd. Even widths reach one tile further right (or down) than left (or up).
 - The Big Chest row now uses its correct item ID, `(BC)BigChest`. Before, it used the Stone Chest ID and relied on the mod's name lookup.
+- The Junimo Hut costs 0g (was 1g). `JunimoHutPrice` now defaults to `0`.
+
+### Fixed
+
+- The Junimo Hut was missing from Robin's construction menu. The game lists each building only under its builder, and the hut's builder was not Robin. The mod now sets it to Robin.
 
 ## [0.1.0] - 2026-11-23
 

@@ -35,7 +35,7 @@ namespace PelicanTownPrivilege.Configuration
 
         // Robin's construction menu (Data/Buildings: Junimo Hut)
         public bool EnableEarlyJunimoHuts { get; set; } = true;
-        public int JunimoHutPrice { get; set; } = 1;
+        public int JunimoHutPrice { get; set; } = 0;
         public bool JunimoHutRequiresMaterials { get; set; } = false;
         public bool InstantJunimoConstruction { get; set; } = true;
 

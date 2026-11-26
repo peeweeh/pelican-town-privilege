@@ -15,7 +15,7 @@ The principle: keep the farming, collecting, relationships, and exploration. Rem
 | Pierre's General Store | Iridium Sprinkler, Auto-Grabber, Auto-Petter, Keg, Preserves Jar, Mayonnaise Machine, Cheese Press, chests, rare eggs, Ostrich Incubator, universal gifts, Stardrop Tea, Galaxy Sword, Dagger, and Hammer, crop seeds | 1g each |
 | Pierre's General Store | Privilege Hoe and Privilege Planter (wide-area farming tools) | 1g each |
 | Clint's Blacksmith | Iridium Axe, Pickaxe, Hoe, Watering Can, and the Iridium Trash Can upgrade | 1g each |
-| Robin's construction menu | Junimo Hut, with no Wizard requirement, no materials, and instant construction. Junimo helpers come out on their own (up to 3 per hut) when crops within 8 tiles are ripe. | 1g |
+| Robin's construction menu | Junimo Hut, with no Wizard requirement, no materials, and instant construction. Junimo helpers come out on their own (up to 3 per hut) when crops within 8 tiles are ripe. | 0g |
 | Marnie's animal shop | Blue Chicken, available from the start | 1g |
 
 Also:

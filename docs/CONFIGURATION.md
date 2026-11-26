@@ -10,7 +10,7 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
 **Invalid values:** the mod corrects them to the default, writes the corrected file back, and logs each change as
 `Config corrected: ...` in the SMAPI console.
 
-**Existing installs:** the first run saves every setting, so v0.1 left `"ToolWidth": 9` in your `config.json`. Set `ToolWidth` to `10` and add `ToolDepth`, or delete `config.json` and start the game once to get the new defaults.
+**Existing installs:** the first run saves every setting, so an older `config.json` keeps its old values. If yours has `"ToolWidth": 9` or `"JunimoHutPrice": 1`, change them to `10` and `0`, and add `"ToolDepth": 10`. Or delete `config.json` and start the game once to get the new defaults.
 
 ## All settings
 
@@ -53,7 +53,7 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
 | Setting | Default | Type | What it does |
 | --- | --- | --- | --- |
 | `EnableEarlyJunimoHuts` | `true` | true/false | Removes the Wizard requirement for the Junimo Hut and applies the settings below. `false` leaves the vanilla entry unchanged. |
-| `JunimoHutPrice` | `1` | whole number, 0 or more | Cost in gold. Negative values reset to `1`. |
+| `JunimoHutPrice` | `0` | whole number, 0 or more | Cost in gold. `0` makes the hut free. The v0.1 default was `1`. Negative values reset to `0`. |
 | `JunimoHutRequiresMaterials` | `false` | true/false | `false` empties the material list. |
 | `InstantJunimoConstruction` | `true` | true/false | `true` sets build days to `0`, which means instant construction. |
 
@@ -96,7 +96,7 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
   "AllowWideToolsOutsideFarmAndGreenhouse": false,
   "LoadSeedsKey": "F",
   "EnableEarlyJunimoHuts": true,
-  "JunimoHutPrice": 1,
+  "JunimoHutPrice": 0,
   "JunimoHutRequiresMaterials": false,
   "InstantJunimoConstruction": true,
   "EnableEarlyBlueChickens": true,

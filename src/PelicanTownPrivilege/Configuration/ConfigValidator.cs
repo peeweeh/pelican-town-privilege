@@ -8,6 +8,7 @@ namespace PelicanTownPrivilege.Configuration
     public static class ConfigValidator
     {
         public const int DefaultPrice = 1;
+        public const int DefaultJunimoHutPrice = 0;
         public const int DefaultStockLimit = 10;
         public const int DefaultToolWidth = 10;
         public const int DefaultToolDepth = 10;
@@ -49,8 +50,8 @@ namespace PelicanTownPrivilege.Configuration
             }
             if (config.JunimoHutPrice < 0)
             {
-                messages.Add($"JunimoHutPrice was {config.JunimoHutPrice}. Negative prices are not allowed; reset to {DefaultPrice}.");
-                config.JunimoHutPrice = DefaultPrice;
+                messages.Add($"JunimoHutPrice was {config.JunimoHutPrice}. Negative prices are not allowed; reset to {DefaultJunimoHutPrice}.");
+                config.JunimoHutPrice = DefaultJunimoHutPrice;
             }
             if (config.BlueChickenPrice < 0)
             {

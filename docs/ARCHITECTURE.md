@@ -127,7 +127,7 @@ These were judgement calls made while building v0.1. Change them in code or conf
 - **Area size:** `ToolWidth` and `ToolDepth` are whole numbers from 1 to 15 (default 10). An even width can't be centred exactly, so it reaches one tile further right (or down) than left (or up).
 - **Overnight incubation** sets an egg's remaining time to zero when the day ends. Only eggs already in an incubator
   are affected. The coop path and the Ostrich Incubator path are separate code.
-- **Junimo Hut:** its Wizard build condition is cleared, its cost comes from config, its material list is emptied
+- **Junimo Hut:** its builder is set to Robin, so Robin's menu lists it (the game lists each building only under its builder). Its Wizard build condition is cleared, its cost comes from config (`JunimoHutPrice`, default `0`), and its material list is emptied
   unless `JunimoHutRequiresMaterials` is `true`, and its build days are `0` (instant) unless `InstantJunimoConstruction` is `false`. No other building changes.
 - **Blue Chicken:** its unlock condition is set to `TRUE`, so Shane's friendship events are not needed. A coop is still required.
 - **Dinosaur:** `DaysToProduce` is set to `1`.

@@ -25,7 +25,7 @@ Rows 1 to 10 follow the spec table in order. The spec's incubation row is split 
 | 4 | Sale values | Sell a Galaxy Sword or Iridium Sprinkler you already own. | Sale value is the normal one. | Not run |
 | 5 | Galaxy weapons | Buy a Galaxy Sword. | It is bought with no unlock, and no discovery mail or quest changes. | Not run |
 | 6 | Gifts | Give a villager a gift they like. Check the friendship change. | Buying and giving gifts keep normal relationship behaviour. No heart event fires on its own. | Not run |
-| 7 | Junimo Hut | Open Robin's menu on day 1. | Junimo Hut is listed, costs 1g, needs no materials, and builds instantly. | Not run |
+| 7 | Junimo Hut | Open Robin's menu on day 1. | Junimo Hut is listed in Robin's menu, costs 0g, needs no materials, and builds instantly. | Not run |
 | 8 | Quest isolation | Buy a Junimo Hut and a Galaxy Sword. | No unrelated quest or Wizard step completes. | Not run |
 | 9 | Blue Chicken | Visit Marnie on day 1. | Blue Chicken costs 1g, can be bought on day 1, and can be assigned to a coop. | Not run |
 | 10 | Incubation | Put a Dinosaur Egg in a coop incubator, then sleep. | The egg hatches after one night, with no extra days needed. | Not run |

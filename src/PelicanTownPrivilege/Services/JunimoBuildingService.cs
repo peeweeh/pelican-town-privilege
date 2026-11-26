@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using StardewModdingAPI;
+using StardewValley;
 using StardewValley.GameData.Buildings;
 using PelicanTownPrivilege.Configuration;
 
 namespace PelicanTownPrivilege.Services
 {
     /// <summary>
-    /// Robin's Junimo Hut: available from the start, 1g, no materials, built instantly, and without the Wizard
-    /// requirement. Only this one building entry changes, so no other magical buildings unlock.
+    /// Robin's Junimo Hut: listed in Robin's menu from the start, free by default, with no materials, built
+    /// instantly, and without the Wizard requirement. Only this one building entry changes, so no other magical
+    /// buildings unlock.
     /// </summary>
     public sealed class JunimoBuildingService
     {
@@ -34,6 +36,8 @@ namespace PelicanTownPrivilege.Services
             }
 
             hut.BuildCondition = null;
+            // Robin's menu lists only buildings whose Builder is Robin.
+            hut.Builder = Game1.builder_robin;
             hut.BuildCost = config.JunimoHutPrice;
             if (!config.JunimoHutRequiresMaterials)
                 hut.BuildMaterials = new List<BuildingMaterial>();
@@ -41,7 +45,7 @@ namespace PelicanTownPrivilege.Services
                 hut.BuildDays = 0;
 
             diagnostics.Info($"Junimo Hut: {hut.BuildCost}g, materials {(config.JunimoHutRequiresMaterials ? "required" : "none")}, " +
-                             $"construction {(config.InstantJunimoConstruction ? "instant" : "normal")}, no Wizard requirement.");
+                             $"construction {(config.InstantJunimoConstruction ? "instant" : "normal")}, listed in Robin's menu, no Wizard requirement.");
         }
     }
 }
