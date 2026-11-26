@@ -12,7 +12,8 @@
     { "Shop": "SeedShop", "Section": "Processing", "Toggle": "EnableProcessingMachines", "Name": "Cheese Press", "ItemId": "(BC)16" },
 
     { "Shop": "SeedShop", "Section": "Storage", "Toggle": "EnableStorageStock", "Name": "Chest", "ItemId": "(BC)130" },
-    { "Shop": "SeedShop", "Section": "Storage", "Toggle": "EnableStorageStock", "Name": "Big Chest", "ItemId": "(BC)232" },
+    { "Shop": "SeedShop", "Section": "Storage", "Toggle": "EnableStorageStock", "Name": "Big Chest", "ItemId": "(BC)BigChest" },
+    { "Shop": "SeedShop", "Section": "Storage", "Toggle": "EnableStorageStock", "Name": "Big Stone Chest", "ItemId": "(BC)BigStoneChest" },
     { "Shop": "SeedShop", "Section": "Storage", "Toggle": "EnableStorageStock", "Name": "Junimo Chest" },
 
     { "Shop": "SeedShop", "Section": "Rare eggs", "Toggle": "EnableRareEggStock", "Name": "Dinosaur Egg", "ItemId": "(O)107" },

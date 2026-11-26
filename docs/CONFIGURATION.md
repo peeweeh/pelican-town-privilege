@@ -25,7 +25,7 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
 | `EnableWateringStock` | `true` | true/false | Iridium Sprinkler. *Added beyond the spec, so each section can be switched off.* |
 | `EnableAnimalEquipment` | `true` | true/false | Auto-Grabber and Auto-Petter. |
 | `EnableProcessingMachines` | `true` | true/false | Keg, Preserves Jar, Mayonnaise Machine, Cheese Press. |
-| `EnableStorageStock` | `true` | true/false | Chest, Big Chest, Junimo Chest. *Added beyond the spec.* |
+| `EnableStorageStock` | `true` | true/false | Chest, Big Chest, Junimo Chest, and Big Stone Chest. *This switch and Big Stone Chest are added beyond the spec.* |
 | `EnableRareEggStock` | `true` | true/false | Dinosaur, Void, Golden, and Ostrich eggs, plus the Ostrich Incubator. |
 | `EnableGiftStock` | `true` | true/false | Universal gift items and Stardrop Tea. |
 | `EnableGalaxyWeapons` | `true` | true/false | Galaxy Sword, Dagger, and Hammer. |

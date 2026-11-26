@@ -8,11 +8,13 @@ All notable changes to this project are recorded here. The format follows
 ### Added
 
 - Crop seeds at Pierre's privilege counter: the crop seeds Pierre normally sells, at 1g in any season. Turn them off with `EnableCropSeeds`.
+- Big Stone Chest at Pierre's privilege counter, 1g, in the storage section. Turn it off with `EnableStorageStock`.
 
 ### Changed
 
 - The Privilege Hoe and Planter cover a 10×10 area (`ToolWidth` × `ToolDepth`, both default 10) instead of a 9×1 strip.
 - `ToolWidth` no longer has to be odd. Even widths reach one tile further right (or down) than left (or up).
+- The Big Chest row now uses its correct item ID, `(BC)BigChest`. Before, it used the Stone Chest ID and relied on the mod's name lookup.
 
 ## [0.1.0] - 2026-11-23
 

@@ -54,7 +54,8 @@ Rows 1 to 10 follow the spec table in order. The spec's incubation row is split 
 | A12 | Bad item ID | Change one `ItemId` in `catalog.json` to `(O)999999`. | The row is found by name if it exists. Otherwise it is skipped and logged, and the game keeps running. | Not run |
 | A13 | Multiplayer | Load a multiplayer save. | A warning appears in the log. Nothing else is tested. | Not run |
 | A14 | Selling a loaded planter | Known gap: selling is not blocked in v0.1. Sell a loaded planter to a shop and record what happens. | Recorded in the log below. A failure here is expected until the gap is fixed. | Not run |
-| A15 | Crop seeds | Buy Parsnip Seeds at Pierre's in winter, then try to plant them with the Privilege Planter. | Bought at 1g. Nothing is planted, because parsnip cannot grow in winter. | Not run |
+| A15 | Crop seeds | Buy Parsnip Seeds at Pierre's in winter, then try to plant them with the Privilege Planter. Each seed costs 1g, and nothing is planted, because parsnip cannot grow in winter. | Not run |
+| A16 | Storage | Open Pierre's shop. Big Chest and Big Stone Chest are listed at 1g each, and each holds almost twice a regular chest. | Not run |
 
 ## Log for this test run
 

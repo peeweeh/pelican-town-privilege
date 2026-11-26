@@ -56,7 +56,7 @@ these added entries.
 | Animal collection | Auto-Grabber |
 | Animal care | Auto-Petter |
 | Processing | Keg, Preserves Jar, Mayonnaise Machine, Cheese Press |
-| Storage | Chest, Big Chest, Junimo Chest |
+| Storage | Chest, Big Chest, Junimo Chest, Big Stone Chest (added in v0.2) |
 | Rare eggs | Dinosaur Egg, Void Egg, Golden Egg, Ostrich Egg |
 | Incubation | Ostrich Incubator |
 | Universal gift selection | Golden Pumpkin, Pearl, Prismatic Shard, Rabbit's Foot, Magic Rock Candy |
