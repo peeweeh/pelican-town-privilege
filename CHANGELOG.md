@@ -14,6 +14,7 @@ All notable changes to this project are recorded here. The format follows
 - Privilege Axe at Pierre's privilege counter, 1g. It is built on the Iridium Axe. One use chops every tree in the 9×9 area, breaks every stump and log, and clears every twig and weed. Fruit trees, crops, soil, buildings, and crafted objects are never touched. Outside the farm and greenhouse it works as a normal axe. Turn it off with `EnableWideAxe`.
 - Privilege Iridium Sprinkler at Pierre's watering counter, 1g. It waters a 9×9 area with the sprinkler in the middle, instead of the vanilla Iridium Sprinkler's smaller area. Turn the area off with `EnableWideSprinkler`.
 - Pet Bowl in Robin's construction menu, 0g, no materials, instant construction. Water it each day with a watering can for +6 friendship. Turn it off with `EnablePetBowl`; change the price with `PetBowlPrice`.
+- Debug logs for the planter and hoe. With `EnableDebugLogging` on, the SMAPI log shows `Planter:` lines (the seed IDs, whether the game finds the crop data, the season, and why each tile was skipped) and `Hoe:` lines (tiles tilled and skipped). A planter that plants nothing also names the main reason on screen.
 
 ### Changed
 

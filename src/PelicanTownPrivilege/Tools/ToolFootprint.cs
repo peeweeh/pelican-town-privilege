@@ -81,14 +81,24 @@ namespace PelicanTownPrivilege.Tools
         /// </summary>
         public static bool TryGetPlantableSoil(GameLocation location, Vector2 tile, string seedId, out HoeDirt soil)
         {
+            return PlantBlocker(location, tile, seedId, out soil) == null;
+        }
+
+        /// <summary>Why the planter cannot plant on this tile, or null when it can. Used by the planter's debug log.</summary>
+        public static string PlantBlocker(GameLocation location, Vector2 tile, string seedId, out HoeDirt soil)
+        {
             soil = null;
-            if (string.IsNullOrEmpty(seedId) || !location.isTileOnMap(tile)) return false;
-            if (location.objects.ContainsKey(tile)) return false;
-            if (location.buildings.Any(building => building.occupiesTile(tile))) return false;
-            if (!location.terrainFeatures.TryGetValue(tile, out TerrainFeature feature)) return false;
+            if (string.IsNullOrEmpty(seedId)) return "the seed is unknown to the game";
+            if (!location.isTileOnMap(tile)) return "off the map";
+            if (location.objects.ContainsKey(tile)) return "an object is on the tile";
+            if (location.buildings.Any(building => building.occupiesTile(tile))) return "a building is on the tile";
+            if (!location.terrainFeatures.TryGetValue(tile, out TerrainFeature feature)) return "no tilled soil";
 
             soil = feature as HoeDirt;
-            return soil != null && soil.crop == null && soil.canPlantThisSeedHere(seedId);
+            if (soil == null) return $"not tilled soil ({feature.GetType().Name})";
+            if (soil.crop != null) return "a crop is already planted";
+            if (!soil.canPlantThisSeedHere(seedId)) return "the game refuses this seed on this soil (season or rules)";
+            return null;
         }
 
         /// <summary>True when the scythe acts on this tile: grass, a weed, or a crop that the scythe harvests.</summary>

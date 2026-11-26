@@ -14,10 +14,12 @@ namespace PelicanTownPrivilege.Services
     public sealed class WideHoeService
     {
         private readonly ModConfig config;
+        private readonly Diagnostics diagnostics;
 
-        public WideHoeService(ModConfig config)
+        public WideHoeService(ModConfig config, Diagnostics diagnostics)
         {
             this.config = config;
+            this.diagnostics = diagnostics;
         }
 
         /// <summary>Runs one activation. Returns true when handled, which means the normal hoe action must not run.</summary>
@@ -35,9 +37,15 @@ namespace PelicanTownPrivilege.Services
             hoe.lastUser = who;
 
             int tilled = 0;
-            foreach (Vector2 tile in ToolFootprint.Compute(who, config.ToolWidth, config.ToolDepth))
+            int skipped = 0;
+            var area = ToolFootprint.Compute(who, config.ToolWidth, config.ToolDepth);
+            foreach (Vector2 tile in area)
             {
-                if (!ToolFootprint.CanTill(location, tile)) continue;
+                if (!ToolFootprint.CanTill(location, tile))
+                {
+                    skipped++;
+                    continue;
+                }
 
                 // The game's grass ignores hoes, so this clears a grass tuft and tills the tile in the same use.
                 if (location.terrainFeatures.TryGetValue(tile, out TerrainFeature feature) && feature is Grass)
@@ -55,6 +63,7 @@ namespace PelicanTownPrivilege.Services
                 }
             }
 
+            diagnostics.Debug($"Hoe: tilled {tilled} of {area.Count} tiles around {who.Tile} in {location.Name}; {skipped} skipped (objects, buildings, crops, trees, or undiggable ground).");
             if (tilled > 0)
                 location.playSound("hoeHit", who.Tile);
             return true;

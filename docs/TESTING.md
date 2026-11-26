@@ -49,6 +49,7 @@ Rows 1 to 10 follow the spec table in order. The spec's incubation row is split 
 | 28 | Privilege Iridium Sprinkler | Place a privilege Iridium Sprinkler on the farm and look at the area it covers. Then wait a night. | The area is 9×9 with the sprinkler in the middle, and the tilled tiles in it are watered overnight. | Not run |
 | 29 | Pet Bowl | Open Robin's menu on day 1. | Pet Bowl is listed, costs 0g, needs no materials, and builds instantly. | Not run |
 | 30 | Pet bowl watering | Place the Pet Bowl, water it with a watering can, and sleep. Repeat without watering. | A watered bowl gives +6 friendship each day. An unwatered bowl gives nothing, and a pet with no bowl loses 10 each day. | Not run |
+| 31 | Planter debug | Set `EnableDebugLogging` to `true`, restart, and use the planter on tilled soil. | The SMAPI log has `Planter:` lines. Each says whether the crop data was found and why tiles were skipped. | Not run |
 
 ## Additional checks
 

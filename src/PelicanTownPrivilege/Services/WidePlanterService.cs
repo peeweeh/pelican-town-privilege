@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using StardewValley;
@@ -18,10 +19,12 @@ namespace PelicanTownPrivilege.Services
         public const int MaxStackSize = 999;
 
         private readonly ModConfig config;
+        private readonly Diagnostics diagnostics;
 
-        public WidePlanterService(ModConfig config)
+        public WidePlanterService(ModConfig config, Diagnostics diagnostics)
         {
             this.config = config;
+            this.diagnostics = diagnostics;
         }
 
         /// <summary>Runs one planting activation. Returns true when handled, which means the normal hoe action must not run.</summary>
@@ -43,12 +46,22 @@ namespace PelicanTownPrivilege.Services
 
             string plantId = PrivilegeTools.PlantingId(seedId);
             int planted = 0;
-            foreach (Vector2 tile in ToolFootprint.Compute(who, config.ToolWidth, config.ToolDepth))
+            var blockers = new Dictionary<string, int>();
+            var area = ToolFootprint.Compute(who, config.ToolWidth, config.ToolDepth);
+            foreach (Vector2 tile in area)
             {
                 if (planted >= stored) break;
-                if (!ToolFootprint.TryGetPlantableSoil(location, tile, plantId, out HoeDirt soil)) continue;
-                if (soil.plant(plantId, who, isFertilizer: false)) planted++;
+                string blocker = ToolFootprint.PlantBlocker(location, tile, plantId, out HoeDirt soil);
+                if (blocker == null && !soil.plant(plantId, who, isFertilizer: false))
+                    blocker = "the game's plant call said no";
+                if (blocker != null)
+                {
+                    blockers[blocker] = blockers.TryGetValue(blocker, out int count) ? count + 1 : 1;
+                    continue;
+                }
+                planted++;
             }
+            LogPlantAttempt(location, who, seedId, plantId, area.Count, planted, blockers);
 
             int remaining = stored - planted;
             PrivilegeTools.SetSeeds(planter, seedId, remaining);
@@ -61,7 +74,7 @@ namespace PelicanTownPrivilege.Services
             }
             else
             {
-                Feedback.Show($"Nothing planted: no empty tilled soil in the area can grow {seedName} right now.");
+                Feedback.Show($"Nothing planted {seedName}. {DescribeBlockers(blockers, area.Count)}");
             }
             return true;
         }
@@ -144,6 +157,25 @@ namespace PelicanTownPrivilege.Services
         {
             if (PrivilegeTools.IsPlanter(who.CurrentTool)) return who.CurrentTool;
             return who.Items.FirstOrDefault(PrivilegeTools.IsPlanter);
+        }
+
+        /// <summary>The most common reason the area was skipped, for the on-screen message.</summary>
+        private static string DescribeBlockers(Dictionary<string, int> blockers, int tiles)
+        {
+            if (blockers.Count == 0) return "No tiles were checked.";
+            KeyValuePair<string, int> top = blockers.OrderByDescending(pair => pair.Value).First();
+            return $"{top.Value} of {tiles} tiles: {top.Key}.";
+        }
+
+        /// <summary>Debug log for one planter use: the seed IDs, the game's crop data check, and why tiles were skipped.</summary>
+        private void LogPlantAttempt(GameLocation location, Farmer who, string seedId, string plantId, int tiles, int planted, Dictionary<string, int> blockers)
+        {
+            bool cropDataFound = plantId != null && Crop.TryGetData(plantId, out _);
+            diagnostics.Debug($"Planter: seed {seedId} -> plant id {plantId ?? "null"}, crop data {(cropDataFound ? "found" : "MISSING")}, " +
+                              $"location {location.Name}, season {location.GetSeason()}, outdoors {location.IsOutdoors}, " +
+                              $"area {tiles} tiles around {who.Tile}, planted {planted}.");
+            foreach (KeyValuePair<string, int> entry in blockers.OrderByDescending(pair => pair.Value))
+                diagnostics.Debug($"Planter: {entry.Value} tiles skipped: {entry.Key}.");
         }
 
         private static string DisplayNameOf(string qualifiedId) => PrivilegeTools.SeedName(qualifiedId);

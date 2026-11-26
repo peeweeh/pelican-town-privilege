@@ -42,13 +42,13 @@ namespace PelicanTownPrivilege
             petBowl = new PetBowlService(config, diagnostics);
             animals = new AnimalService(config, diagnostics);
             incubation = new IncubationService(config, diagnostics);
-            planter = new WidePlanterService(config);
+            planter = new WidePlanterService(config, diagnostics);
             footprint = new FootprintPreview(config);
             cleanup = new CleanupService(saveMigration, diagnostics);
 
             HookServices.Config = config;
             HookServices.Diagnostics = diagnostics;
-            HookServices.WideHoe = new WideHoeService(config);
+            HookServices.WideHoe = new WideHoeService(config, diagnostics);
             HookServices.Planter = planter;
             HookServices.WideScythe = new WideScytheService(config);
             HookServices.WidePickaxe = new WidePickaxeService(config);
