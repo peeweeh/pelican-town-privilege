@@ -7,6 +7,7 @@ using PelicanTownPrivilege.Configuration;
 using PelicanTownPrivilege.Content;
 using PelicanTownPrivilege.RuntimeHooks;
 using PelicanTownPrivilege.Services;
+using PelicanTownPrivilege.Tools;
 
 namespace PelicanTownPrivilege
 {
@@ -61,6 +62,7 @@ namespace PelicanTownPrivilege
             helper.Events.Content.AssetRequested += OnAssetRequested;
             helper.Events.GameLoop.SaveLoaded += OnSaveLoaded;
             helper.Events.GameLoop.DayEnding += (sender, e) => incubation.OnDayEnding();
+            helper.Events.GameLoop.DayStarted += (sender, e) => LogSprinklers();
             helper.Events.Input.ButtonPressed += OnButtonPressed;
             helper.Events.Display.RenderedWorld += (sender, e) => footprint.Draw(e.SpriteBatch);
             helper.Events.Display.RenderedActiveMenu += (sender, e) => shops.DrawCounterNotes(e.SpriteBatch);
@@ -84,6 +86,18 @@ namespace PelicanTownPrivilege
             }
             else if (e.NameWithoutLocale.IsEquivalentTo("Data/FarmAnimals"))
                 e.Edit(asset => animals.EditFarmAnimals(asset));
+        }
+
+        /// <summary>Debug log each morning: every Iridium Sprinkler's radius and whether it carries the privilege tag.</summary>
+        private void LogSprinklers()
+        {
+            if (!Context.IsWorldReady) return;
+
+            foreach (StardewValley.Object sprinkler in Game1.getFarm().Objects.Values)
+            {
+                if (!PrivilegeTools.IsIridiumSprinkler(sprinkler)) continue;
+                diagnostics.Debug($"Iridium Sprinkler at {sprinkler.TileLocation}: radius {sprinkler.GetModifiedRadiusForSprinkler()}, privilege tag {(PrivilegeTools.IsWideSprinkler(sprinkler) ? "yes" : "no")}.");
+            }
         }
 
         private void OnSaveLoaded(object sender, SaveLoadedEventArgs e)

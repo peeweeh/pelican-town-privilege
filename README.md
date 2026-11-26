@@ -25,7 +25,7 @@ Also:
   Planter plants, the Privilege Scythe cuts grass and weeds and harvests, and the Privilege Pickaxe breaks stones and
   boulders. The Privilege Axe chops trees and stumps and clears twigs and weeds. Stones and boulders block tilling: clear them with the Pickaxe. The
   area rotates with your facing, and a preview shows which tiles will be used.
-- **Privilege Iridium Sprinkler.** Waters a 9×9 area, with the sprinkler in the middle.
+- **Iridium Sprinklers.** Every Iridium Sprinkler waters a 9×9 area, with the sprinkler in the middle.
 - **Pet care.** Water the Pet Bowl each day with a watering can. A watered bowl gives your dog +6 friendship a day. Without a bowl, your dog loses 10 friendship a day.
 - **Overnight incubation.** Eggs in coop incubators and Ostrich Incubators finish when the day ends.
 - **Daily Dinosaur eggs.** A fed, cared-for dinosaur produces once a day.

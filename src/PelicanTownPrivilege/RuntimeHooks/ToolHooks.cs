@@ -88,7 +88,7 @@ namespace PelicanTownPrivilege.RuntimeHooks
         }
     }
 
-    /// <summary>The privilege Iridium Sprinkler waters a 9×9 square. The game reads this radius when it waters and when it draws the area.</summary>
+    /// <summary>Every Iridium Sprinkler waters a 9×9 square. The game reads this radius when it waters and when it draws the area.</summary>
     [HarmonyPatch(typeof(StardewValley.Object), nameof(StardewValley.Object.GetModifiedRadiusForSprinkler))]
     public static class SprinklerRadiusPatch
     {
@@ -96,7 +96,7 @@ namespace PelicanTownPrivilege.RuntimeHooks
         {
             try
             {
-                if (HookServices.Config.EnableWideSprinkler && PrivilegeTools.IsWideSprinkler(__instance))
+                if (HookServices.Config.EnableWideSprinkler && PrivilegeTools.IsIridiumSprinkler(__instance))
                     __result = ToolFootprint.SprinklerRadius;
             }
             catch (Exception ex)

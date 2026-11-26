@@ -71,7 +71,7 @@ Shop rows are only appended. Existing rows, and the sale values in `Data/Objects
 | Privilege Scythe area | Normal scythe swing finishes (Harmony postfix on `MeleeWeapon.DoDamage`) | `WideScytheService.Use` |
 | Privilege Pickaxe breaking | Pickaxe is used (Harmony prefix on `Pickaxe.DoFunction`) | `WidePickaxeService.Use` |
 | Privilege Axe chopping | Axe is used (Harmony prefix on `Axe.DoFunction`) | `WideAxeService.Use` |
-| Privilege Iridium Sprinkler area | Sprinkler radius is read (Harmony postfix on `Object.GetModifiedRadiusForSprinkler`) | `SprinklerRadiusPatch` in `ToolHooks.cs` |
+| Iridium Sprinkler area | Sprinkler radius is read (Harmony postfix on `Object.GetModifiedRadiusForSprinkler`) | `SprinklerRadiusPatch` in `ToolHooks.cs` |
 | Load and unload seeds | Load key pressed (`ButtonPressed`) | `WidePlanterService.HandleLoadSeedsKey` |
 | Area preview | Every frame, only while a privilege tool is held (`RenderedWorld`) | `FootprintPreview.Draw` |
 | Names and seed tooltip | Item name and description are read (Harmony postfixes) | `ToolHooks.cs` |
@@ -129,7 +129,7 @@ These were judgement calls made while building v0.1. Change them in code or conf
   activation. The planter uses no energy, because the spec gives it none. The scythe adds none: the normal swing's cost applies.
 - **Area contents:** the hoe removes grass and weeds itself and tills in the same use. Grass is cleared directly, because the game's grass ignores hoes. Neither drops anything. The scythe cuts grass, clears weeds, and harvests scythe crops. The pickaxe breaks stones, ore, and boulders. The axe chops trees, stumps, and logs, and clears twigs and weeds. It never touches fruit trees. Neither the hoe nor the pickaxe removes soil, and neither touches crops, trees, paths, buildings, crafted objects, or characters.
 - **Seed IDs:** the planter stores the qualified seed ID (for example `(O)472`), but the game's planting code expects the plain ID (`472`). `PrivilegeTools.PlantingId` converts it before every planting call.
-- **Sprinkler area:** the privilege Iridium Sprinkler's radius is set to 4 by a postfix on the game's radius method, so its area is 9×9 with the sprinkler in the middle. The watering code itself is unchanged.
+- **Sprinkler area:** every Iridium Sprinkler's radius is set to 4 by a postfix on the game's radius method, so its area is 9×9 with the sprinkler in the middle. The watering code itself is unchanged. Tags are not used, because sprinklers stack and stacking ignores tags.
 - **Seed loading:** hold a seed stack and press the Load key to put the whole stack in your planter. Hold the planter
   and press the key to take everything back out. A planter holds one seed type at a time.
 - **Planter seeds can't be trashed** while the planter holds any. Use the unload key first. Selling is not blocked yet (see Known unknowns).

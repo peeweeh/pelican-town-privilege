@@ -43,6 +43,9 @@ namespace PelicanTownPrivilege.Tools
 
         public static bool IsWideSprinkler(Item item) => item is StardewValley.Object && HasTag(item, KindKey, WideSprinklerKind);
 
+        /// <summary>Every Iridium Sprinkler, whether or not it carries the privilege tag. Sprinklers stack, and stacking ignores tags.</summary>
+        public static bool IsIridiumSprinkler(Item item) => item is StardewValley.Object sprinkler && sprinkler.QualifiedItemId == "(O)645";
+
         /// <summary>The display name of a privilege tool, or null for any other item.</summary>
         public static string NameOf(Item item)
         {

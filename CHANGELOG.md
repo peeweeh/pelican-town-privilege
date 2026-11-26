@@ -29,6 +29,7 @@ All notable changes to this project are recorded here. The format follows
 ### Fixed
 
 - The Junimo Hut was missing from Robin's construction menu. The game lists each building only under its builder, and the hut's builder was not Robin. The mod now sets it to Robin.
+- Iridium Sprinklers did not water 9×9 when they came from an older stack. Sprinklers stack, and stacking ignores the mod's tag, so a new privilege sprinkler merged into an old stack and lost its tag. Now every Iridium Sprinkler waters 9×9 while `EnableWideSprinkler` is on.
 - The Privilege Planter could not plant any seed. It passed the qualified item ID (for example `(O)472`) to the game's planting code, which expects the plain ID (`472`). Planting now uses the plain ID.
 - The Privilege Hoe never tilled grass. The game's grass ignores hoes, so planting had no tilled soil to use. The hoe now clears a grass tuft and tills it in the same use. Grass cleared by the hoe drops nothing.
 - The Privilege Hoe skipped weedy tiles. Weeds in the area are now removed and tilled in the same use, like grass. Stones and boulders still block tilling. The Privilege Axe clears twigs.

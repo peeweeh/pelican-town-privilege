@@ -46,7 +46,7 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
 | `EnableWideScythe` | `true` | true/false | Privilege Scythe: its shop row and its area behaviour (grass, weeds, and scythe crops). The normal swing and combat are unchanged. |
 | `EnableWidePickaxe` | `true` | true/false | Privilege Pickaxe: its shop row and its area behaviour (stones, ore nodes, and boulders). |
 | `EnableWideAxe` | `true` | true/false | Privilege Axe: its shop row and its area behaviour (trees, stumps, logs, twigs, and weeds). Fruit trees are never touched. |
-| `EnableWideSprinkler` | `true` | true/false | Privilege Iridium Sprinkler: its 9×9 watering area with the sprinkler in the middle. Its shop row is controlled by `EnableWateringStock`. |
+| `EnableWideSprinkler` | `true` | true/false | Every Iridium Sprinkler: its 9×9 watering area with the sprinkler in the middle, including ones you already own. Its shop row is controlled by `EnableWateringStock`. |
 | `ToolWidth` | `9` | whole number, 1 to 15 | Width of the area for all five wide-area tools, across the player. Even widths are allowed; they reach one tile further right (or down) than left (or up). Other values reset to `9`. |
 | `ToolDepth` | `9` | whole number, 1 to 15 | How many tiles deep the area reaches, starting one tile in front of the player. Other values reset to `9`. *Added beyond the spec.* |
 | `AllowWideToolsOutsideFarmAndGreenhouse` | `false` | true/false | `false` means the wide tools do nothing outside the farm and greenhouse. `true` allows any location. |

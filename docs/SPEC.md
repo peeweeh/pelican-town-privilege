@@ -196,7 +196,7 @@ The normal swing and its combat are unchanged.
 | --- | --- |
 | Purchase location | Pierre, in the watering section |
 | Price | 1g |
-| Watering area | 9×9 square with the sprinkler in the middle, instead of the vanilla Iridium Sprinkler's smaller area |
+| Watering area | 9×9 square with the sprinkler in the middle, instead of the vanilla Iridium Sprinkler's smaller area. It applies to every Iridium Sprinkler, including ones you already own. |
 | Behaviour switch | `EnableWideSprinkler`. The shop row is controlled by `EnableWateringStock`. |
 
 ## 5. Junimo Huts from the beginning
