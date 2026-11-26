@@ -19,8 +19,10 @@ src/PelicanTownPrivilege/
 ├── Services/
 │   ├── ShopService.cs          Adds catalog rows to Data/Shops; draws Pierre's price line and gift warning
 │   ├── PremiumToolService.cs   Applies the Iridium Trash Can upgrade at purchase
-│   ├── WideHoeService.cs       Privilege Hoe: 10x10 tilling
+│   ├── WideHoeService.cs       Privilege Hoe: 10x10 tilling, clears grass first
 │   ├── WidePlanterService.cs   Privilege Planter: loading, unloading, and area planting
+│   ├── WideScytheService.cs    Privilege Scythe: area cutting and harvesting after each swing
+│   ├── WidePickaxeService.cs   Privilege Pickaxe: area breaking of stones, ore, and boulders
 │   ├── FootprintPreview.cs     Draws the area over the world while a privilege tool is held
 │   ├── JunimoBuildingService.cs Edits the Junimo Hut entry in Data/Buildings
 │   ├── AnimalService.cs        Edits Blue Chicken and Dinosaur entries in Data/FarmAnimals
@@ -64,6 +66,8 @@ Shop rows are only appended. Existing rows, and the sale values in `Data/Objects
 | --- | --- | --- |
 | Privilege Hoe tilling | Hoe is used (Harmony prefix on `Hoe.DoFunction`) | `WideHoeService.Use` |
 | Privilege Planter planting | Planter is used (same prefix) | `WidePlanterService.Plant` |
+| Privilege Scythe area | Normal scythe swing finishes (Harmony postfix on `MeleeWeapon.DoDamage`) | `WideScytheService.Use` |
+| Privilege Pickaxe breaking | Pickaxe is used (Harmony prefix on `Pickaxe.DoFunction`) | `WidePickaxeService.Use` |
 | Load and unload seeds | Load key pressed (`ButtonPressed`) | `WidePlanterService.HandleLoadSeedsKey` |
 | Area preview | Every frame, only while a privilege tool is held (`RenderedWorld`) | `FootprintPreview.Draw` |
 | Names and seed tooltip | Item name and description are read (Harmony postfixes) | `ToolHooks.cs` |
@@ -79,7 +83,7 @@ Shop rows are only appended. Existing rows, and the sale values in `Data/Objects
 The mod writes no save-file data of its own. Its only persistent state is:
 
 - **Item tags** in `Item.modData`, all with the key prefix `PelicanTownPrivilege/`:
-  - `PelicanTownPrivilege/Tool` is `WideHoe` or `WidePlanter`. Set by the shop row.
+  - `PelicanTownPrivilege/Tool` is `WideHoe`, `WidePlanter`, `WideScythe`, or `WidePickaxe`. Set by the shop row.
   - `PelicanTownPrivilege/SeedId` and `PelicanTownPrivilege/SeedCount` hold the planter's stored seeds.
   - `PelicanTownPrivilege/Action` is `UpgradeTrashCan` on the sentinel shop item. It is never put in a player's inventory.
 - **Shop row IDs** of the form `PelicanTownPrivilege.<Name>`. These exist only in the shop table, which the game
@@ -112,13 +116,16 @@ Item IDs use the game's qualified format:
 
 These were judgement calls made while building v0.1. Change them in code or config if you disagree.
 
-- **Tools are base hoes with tags, not custom classes.** The Privilege Hoe and Planter are ordinary `Hoe` items with
-  `modData` tags. Without the mod they act as normal hoes, so nothing is lost.
-- **Outside the farm and greenhouse, both privilege tools do nothing** and show a message. No energy is used.
-- **Energy:** the Privilege Hoe uses the same formula as `Hoe.DoFunction`, once per activation. The planter uses no
-  energy, because the spec gives it none.
-- **Area contents:** grass is cleared by the hoe's own tool action, the same way the normal hoe clears it. Crops,
-  trees, paths, existing soil, objects, buildings, and characters are never touched.
+- **Tools are base items with tags, not custom classes.** The Privilege Hoe and Planter are ordinary `Hoe` items, the
+  Privilege Scythe is an ordinary scythe, and the Privilege Pickaxe is an ordinary Iridium pickaxe. Each has `modData`
+  tags. Without the mod they act as their normal selves, so nothing is lost.
+- **Outside the farm and greenhouse, the hoe and planter do nothing** and show a message. No energy is used. The scythe
+  and pickaxe act as their normal selves there.
+- **Energy:** the Privilege Hoe and Pickaxe use the same formula as `Hoe.DoFunction` and `Pickaxe.DoFunction`, once per
+  activation. The planter uses no energy, because the spec gives it none. The scythe adds none: the normal swing's cost applies.
+- **Area contents:** the hoe clears grass itself and tills in the same use, because the game's grass ignores hoes. The
+  scythe cuts grass, clears weeds, and harvests scythe crops. The pickaxe breaks stones, ore, and boulders. Neither the
+  hoe nor the pickaxe removes soil, and neither touches crops, trees, paths, buildings, crafted objects, or characters.
 - **Seed loading:** hold a seed stack and press the Load key to put the whole stack in your planter. Hold the planter
   and press the key to take everything back out. A planter holds one seed type at a time.
 - **Planter seeds can't be trashed** while the planter holds any. Use the unload key first. Selling is not blocked yet (see Known unknowns).

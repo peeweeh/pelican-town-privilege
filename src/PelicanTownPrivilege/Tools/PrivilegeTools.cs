@@ -18,14 +18,32 @@ namespace PelicanTownPrivilege.Tools
 
         public const string WideHoeKind = "WideHoe";
         public const string PlanterKind = "WidePlanter";
+        public const string WideScytheKind = "WideScythe";
+        public const string WidePickaxeKind = "WidePickaxe";
         public const string UpgradeTrashCanAction = "UpgradeTrashCan";
 
         public const string WideHoeName = "Privilege Hoe";
         public const string PlanterName = "Privilege Planter";
+        public const string WideScytheName = "Privilege Scythe";
+        public const string WidePickaxeName = "Privilege Pickaxe";
 
         public static bool IsWideHoe(Item item) => item is Hoe && HasTag(item, KindKey, WideHoeKind);
 
         public static bool IsPlanter(Item item) => item is Hoe && HasTag(item, KindKey, PlanterKind);
+
+        public static bool IsWideScythe(Item item) => item is MeleeWeapon && HasTag(item, KindKey, WideScytheKind);
+
+        public static bool IsWidePickaxe(Item item) => item is Pickaxe && HasTag(item, KindKey, WidePickaxeKind);
+
+        /// <summary>The display name of a privilege tool, or null for any other item.</summary>
+        public static string NameOf(Item item)
+        {
+            if (IsWideHoe(item)) return WideHoeName;
+            if (IsPlanter(item)) return PlanterName;
+            if (IsWideScythe(item)) return WideScytheName;
+            if (IsWidePickaxe(item)) return WidePickaxeName;
+            return null;
+        }
 
         public static bool IsTrashCanSentinel(Item item) => HasTag(item, ShopActionKey, UpgradeTrashCanAction);
 

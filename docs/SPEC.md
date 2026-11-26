@@ -142,6 +142,35 @@ stored seeds.
 
 No seed duplication, free planting, or accidental replacement of growing crops.
 
+### Privilege Scythe
+
+| Setting | Behaviour |
+| --- | --- |
+| Purchase location | Pierre |
+| Price | 1g |
+| Footprint | Same 10×10 area |
+| Orientation | Rotates with player facing |
+| Energy | None added. The normal swing's own cost applies, once per swing |
+| Valid locations | Farm and greenhouse by default. Elsewhere the normal scythe runs. |
+| What it does | After each normal swing, cuts grass, clears weeds, and harvests scythe crops across the area |
+| Protected targets | Soil is never removed. Trees, buildings, objects other than weeds, and crops that need another tool are untouched. |
+
+The normal swing and its combat are unchanged.
+
+### Privilege Pickaxe
+
+| Setting | Behaviour |
+| --- | --- |
+| Purchase location | Pierre |
+| Price | 1g |
+| Base tool | Iridium Pickaxe, so boulders can break |
+| Footprint | Same 10×10 area |
+| Orientation | Rotates with player facing |
+| Energy | One normal pickaxe-use cost per activation |
+| Valid locations | Farm and greenhouse by default. Elsewhere it works as a normal Iridium pickaxe. |
+| What it does | Breaks every stone, ore node, and boulder in the area. A boulder breaks after four hits while it stays in the area. |
+| Protected targets | Soil, crops, trees, stumps, logs, and crafted objects are never touched. |
+
 ## 5. Junimo Huts from the beginning
 
 ### Robin's construction menu
@@ -254,6 +283,8 @@ Illustrative configuration:
 
   "EnableWideHoe": true,
   "EnableWidePlanter": true,
+  "EnableWideScythe": true,
+  "EnableWidePickaxe": true,
   "ToolWidth": 10,
   "ToolDepth": 10,
   "AllowWideToolsOutsideFarmAndGreenhouse": false,
@@ -292,6 +323,8 @@ PelicanTownPrivilege
 ├── PremiumToolService
 ├── WideHoeService
 ├── WidePlanterService
+├── WideScytheService
+├── WidePickaxeService
 ├── JunimoBuildingService
 ├── AnimalService
 ├── IncubationService

@@ -29,7 +29,9 @@ namespace PelicanTownPrivilege.Services
             Item held = who.CurrentItem;
             bool wide = config.EnableWideHoe && PrivilegeTools.IsWideHoe(held);
             bool planter = config.EnableWidePlanter && PrivilegeTools.IsPlanter(held);
-            if (!wide && !planter) return;
+            bool scythe = config.EnableWideScythe && PrivilegeTools.IsWideScythe(held);
+            bool pickaxe = config.EnableWidePickaxe && PrivilegeTools.IsWidePickaxe(held);
+            if (!wide && !planter && !scythe && !pickaxe) return;
 
             GameLocation location = Game1.currentLocation;
             bool allowed = ToolFootprint.IsAllowedLocation(location, config);
@@ -39,9 +41,10 @@ namespace PelicanTownPrivilege.Services
             pixel ??= CreatePixel();
             foreach (Vector2 tile in ToolFootprint.Compute(who, config.ToolWidth, config.ToolDepth))
             {
-                bool valid = allowed && (wide
-                    ? ToolFootprint.CanTill(location, tile)
-                    : ToolFootprint.TryGetPlantableSoil(location, tile, seedId, out _));
+                bool valid = allowed && (wide ? ToolFootprint.CanTill(location, tile)
+                    : planter ? ToolFootprint.TryGetPlantableSoil(location, tile, seedId, out _)
+                    : scythe ? ToolFootprint.CanCut(location, tile)
+                    : ToolFootprint.CanBreak(location, tile));
 
                 Color color = valid ? Color.LimeGreen * 0.45f : Color.Red * 0.35f;
                 Vector2 screen = Game1.GlobalToLocal(new Vector2(tile.X * ToolFootprint.TileSize, tile.Y * ToolFootprint.TileSize));

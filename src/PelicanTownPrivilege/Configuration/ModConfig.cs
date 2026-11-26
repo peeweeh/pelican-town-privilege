@@ -25,9 +25,11 @@ namespace PelicanTownPrivilege.Configuration
         // Clint's Blacksmith (Data/Shops: Blacksmith)
         public bool EnablePremiumTools { get; set; } = true;
 
-        // Wide-area farming tools: Privilege Hoe and Privilege Planter
+        // Wide-area farming tools: Privilege Hoe, Planter, Scythe, and Pickaxe. ToolWidth and ToolDepth apply to all four.
         public bool EnableWideHoe { get; set; } = true;
         public bool EnableWidePlanter { get; set; } = true;
+        public bool EnableWideScythe { get; set; } = true;
+        public bool EnableWidePickaxe { get; set; } = true;
         public int ToolWidth { get; set; } = 10;
         public int ToolDepth { get; set; } = 10;
         public bool AllowWideToolsOutsideFarmAndGreenhouse { get; set; } = false;

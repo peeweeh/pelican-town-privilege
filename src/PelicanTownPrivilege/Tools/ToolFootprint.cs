@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using StardewValley;
+using StardewValley.GameData.Crops;
 using StardewValley.TerrainFeatures;
 using PelicanTownPrivilege.Configuration;
 
@@ -81,6 +82,25 @@ namespace PelicanTownPrivilege.Tools
 
             soil = feature as HoeDirt;
             return soil != null && soil.crop == null && soil.canPlantThisSeedHere(seedId);
+        }
+
+        /// <summary>True when the scythe acts on this tile: grass, a weed, or a crop that the scythe harvests.</summary>
+        public static bool CanCut(GameLocation location, Vector2 tile)
+        {
+            if (!location.isTileOnMap(tile)) return false;
+
+            if (location.terrainFeatures.TryGetValue(tile, out TerrainFeature feature))
+                return feature is Grass || (feature is HoeDirt soil && soil.crop != null && soil.crop.GetHarvestMethod() == HarvestMethod.Scythe);
+
+            return location.objects.TryGetValue(tile, out StardewValley.Object item) && item.IsWeeds();
+        }
+
+        /// <summary>True when the pickaxe acts on this tile: a stone, an ore node, or a boulder. Nothing else is touched.</summary>
+        public static bool CanBreak(GameLocation location, Vector2 tile)
+        {
+            if (!location.isTileOnMap(tile)) return false;
+
+            return location.objects.TryGetValue(tile, out StardewValley.Object item) && (item.IsBreakableStone() || item.Name.Contains("Boulder"));
         }
     }
 }

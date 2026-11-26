@@ -35,6 +35,11 @@ Rows 1 to 10 follow the spec table in order. The spec's incubation row is split 
 | 14 | Wide planter | Load 3 parsnip seeds, then use the planter on a row of tilled soil. | 3 tiles are planted, and exactly 3 seeds are used. | Not run |
 | 15 | Protected objects | Use the wide hoe and planter next to crops, a tree, a chest, and a path. | None of those are removed or changed. | Not run |
 | 16 | Removal | Run `ptp_cleanup` (dry run), then `ptp_cleanup apply` on a copy of the save. | Seeds come back, tags are cleared, and the report says "Ready to load without the mod: YES". | Not run |
+| 17 | Wide hoe on grass | Stand on uncut grass on the farm, and use the Privilege Hoe facing it. | Grass is cleared and the same tiles are tilled in that use. Then the Privilege Planter can plant there. | Not run |
+| 18 | Privilege Scythe | Hold the Privilege Scythe next to grass, weeds, a ripe scythe crop such as Wheat, and a tilled tile with no crop. Swing. | Grass and weeds in the area are cut, ripe scythe crops are harvested, the tilled tile stays, and combat still works. | Not run |
+| 19 | Privilege Pickaxe | Stand near a few stones, an ore node, a boulder, a sprinkler, and a tilled tile. Use the Privilege Pickaxe facing each. | Stones break, the boulder breaks after four uses in the same spot, and the sprinkler, soil, and crops stay. | Not run |
+| 20 | Pickaxe outside the farm | Use the Privilege Pickaxe in the mines on a stone. | It breaks only that stone, as a normal Iridium pickaxe. There is no area and no message. | Not run |
+| 21 | Shop rows | Open Pierre's shop. | Privilege Scythe and Privilege Pickaxe are listed at 1g each. | Not run |
 
 ## Additional checks
 
@@ -56,6 +61,7 @@ Rows 1 to 10 follow the spec table in order. The spec's incubation row is split 
 | A14 | Selling a loaded planter | Known gap: selling is not blocked in v0.1. Sell a loaded planter to a shop and record what happens. | Recorded in the log below. A failure here is expected until the gap is fixed. | Not run |
 | A15 | Crop seeds | Buy Parsnip Seeds at Pierre's in winter, then try to plant them with the Privilege Planter. Each seed costs 1g, and nothing is planted, because parsnip cannot grow in winter. | Not run |
 | A16 | Storage | Open Pierre's shop. Big Chest and Big Stone Chest are listed at 1g each, and each holds almost twice a regular chest. | Not run |
+| A17 | Scythe toggle | Set `EnableWideScythe` to `false`, restart, and swing a Privilege Scythe. | Only the normal swing happens. | Not run |
 
 ## Log for this test run
 

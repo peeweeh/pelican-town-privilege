@@ -13,15 +13,16 @@ The principle: keep the farming, collecting, relationships, and exploration. Rem
 | Where | What | Price |
 | --- | --- | --- |
 | Pierre's General Store | Iridium Sprinkler, Auto-Grabber, Auto-Petter, Keg, Preserves Jar, Mayonnaise Machine, Cheese Press, chests, rare eggs, Ostrich Incubator, universal gifts, Stardrop Tea, Galaxy Sword, Dagger, and Hammer, crop seeds | 1g each |
-| Pierre's General Store | Privilege Hoe and Privilege Planter (wide-area farming tools) | 1g each |
+| Pierre's General Store | Privilege Hoe, Privilege Planter, Privilege Scythe, and Privilege Pickaxe (wide-area farming tools) | 1g each |
 | Clint's Blacksmith | Iridium Axe, Pickaxe, Hoe, Watering Can, and the Iridium Trash Can upgrade | 1g each |
 | Robin's construction menu | Junimo Hut, with no Wizard requirement, no materials, and instant construction. Junimo helpers come out on their own (up to 3 per hut) when crops within 8 tiles are ripe. | 0g |
 | Marnie's animal shop | Blue Chicken, available from the start | 1g |
 
 Also:
 
-- **Wide tools.** The Privilege Hoe tills, and the Privilege Planter plants, a 10×10 area in front of you. The area
-  rotates with your facing, and a preview shows which tiles will be used.
+- **Wide tools.** In a 10×10 area in front of you, the Privilege Hoe tills, the Privilege Planter plants, the Privilege
+  Scythe cuts grass and harvests, and the Privilege Pickaxe breaks stones and boulders. The area rotates with your
+  facing, and a preview shows which tiles will be used.
 - **Overnight incubation.** Eggs in coop incubators and Ostrich Incubators finish when the day ends.
 - **Daily Dinosaur eggs.** A fed, cared-for dinosaur produces once a day.
 - **Save cleanup.** `ptp_cleanup` returns planter seeds and clears the mod's tags, so a save can load without the mod.

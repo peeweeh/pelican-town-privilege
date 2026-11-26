@@ -43,7 +43,9 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
 | --- | --- | --- | --- |
 | `EnableWideHoe` | `true` | true/false | Privilege Hoe: its shop row and its 10×10 tilling behaviour. |
 | `EnableWidePlanter` | `true` | true/false | Privilege Planter: its shop row, its planting behaviour, and the Load key. |
-| `ToolWidth` | `10` | whole number, 1 to 15 | Width of the area, across the player. Even widths are allowed; they reach one tile further right (or down) than left (or up). Other values reset to `10`. |
+| `EnableWideScythe` | `true` | true/false | Privilege Scythe: its shop row and its area behaviour (grass, weeds, and scythe crops). The normal swing and combat are unchanged. |
+| `EnableWidePickaxe` | `true` | true/false | Privilege Pickaxe: its shop row and its area behaviour (stones, ore nodes, and boulders). |
+| `ToolWidth` | `10` | whole number, 1 to 15 | Width of the area for all four wide-area tools, across the player. Even widths are allowed; they reach one tile further right (or down) than left (or up). Other values reset to `10`. |
 | `ToolDepth` | `10` | whole number, 1 to 15 | How many tiles deep the area reaches, starting one tile in front of the player. Other values reset to `10`. *Added beyond the spec.* |
 | `AllowWideToolsOutsideFarmAndGreenhouse` | `false` | true/false | `false` means the wide tools do nothing outside the farm and greenhouse. `true` allows any location. |
 | `LoadSeedsKey` | `"F"` | a key name from SMAPI's list (for example `F`, `G`, `K`, `F5`) | Key for loading and unloading the planter. Unknown names reset to `F`. *Added beyond the spec.* |
@@ -91,6 +93,8 @@ Pelican Town Privilege reads its settings from `config.json`. SMAPI creates the 
   "EnablePremiumTools": true,
   "EnableWideHoe": true,
   "EnableWidePlanter": true,
+  "EnableWideScythe": true,
+  "EnableWidePickaxe": true,
   "ToolWidth": 10,
   "ToolDepth": 10,
   "AllowWideToolsOutsideFarmAndGreenhouse": false,

@@ -9,6 +9,8 @@ All notable changes to this project are recorded here. The format follows
 
 - Crop seeds at Pierre's privilege counter: the crop seeds Pierre normally sells, at 1g in any season. Turn them off with `EnableCropSeeds`.
 - Big Stone Chest at Pierre's privilege counter, 1g, in the storage section. Turn it off with `EnableStorageStock`.
+- Privilege Scythe at Pierre's privilege counter, 1g. After each swing, it cuts grass, clears weeds, and harvests ripe scythe crops across the 10×10 area. Soil is never removed, and the normal swing and combat are unchanged. Turn it off with `EnableWideScythe`.
+- Privilege Pickaxe at Pierre's privilege counter, 1g. It is built on the Iridium Pickaxe, so it can break boulders. One use breaks every stone, ore node, and boulder in the 10×10 area. Soil, crops, trees, and crafted objects are never touched. Outside the farm and greenhouse it works as a normal pickaxe. Turn it off with `EnableWidePickaxe`.
 
 ### Changed
 
@@ -16,10 +18,13 @@ All notable changes to this project are recorded here. The format follows
 - `ToolWidth` no longer has to be odd. Even widths reach one tile further right (or down) than left (or up).
 - The Big Chest row now uses its correct item ID, `(BC)BigChest`. Before, it used the Stone Chest ID and relied on the mod's name lookup.
 - The Junimo Hut costs 0g (was 1g). `JunimoHutPrice` now defaults to `0`.
+- `ToolWidth` and `ToolDepth` now apply to all four wide-area tools: hoe, planter, scythe, and pickaxe.
+- The planter's failure message says the soil cannot grow the seed right now. Before, it said no tilled soil accepted the seed, which hid season and location limits.
 
 ### Fixed
 
 - The Junimo Hut was missing from Robin's construction menu. The game lists each building only under its builder, and the hut's builder was not Robin. The mod now sets it to Robin.
+- The Privilege Hoe never tilled grass. The game's grass ignores hoes, so planting had no tilled soil to use. The hoe now clears a grass tuft and tills it in the same use. Grass cleared by the hoe drops nothing.
 
 ## [0.1.0] - 2026-11-23
 

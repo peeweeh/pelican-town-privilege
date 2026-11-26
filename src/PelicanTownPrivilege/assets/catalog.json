@@ -65,6 +65,8 @@
 
     { "Shop": "SeedShop", "Section": "Wide-area farming tools", "Toggle": "EnableWideHoe", "Name": "Hoe", "ItemId": "(T)Hoe", "DisplayName": "Privilege Hoe", "ModData": { "PelicanTownPrivilege/Tool": "WideHoe" } },
     { "Shop": "SeedShop", "Section": "Wide-area farming tools", "Toggle": "EnableWidePlanter", "Name": "Hoe", "ItemId": "(T)Hoe", "DisplayName": "Privilege Planter", "ModData": { "PelicanTownPrivilege/Tool": "WidePlanter" } },
+    { "Shop": "SeedShop", "Section": "Wide-area farming tools", "Toggle": "EnableWideScythe", "Name": "Scythe", "ItemId": "(W)47", "DisplayName": "Privilege Scythe", "ModData": { "PelicanTownPrivilege/Tool": "WideScythe" } },
+    { "Shop": "SeedShop", "Section": "Wide-area farming tools", "Toggle": "EnableWidePickaxe", "Name": "Iridium Pickaxe", "ItemId": "(T)IridiumPickaxe", "DisplayName": "Privilege Pickaxe", "ModData": { "PelicanTownPrivilege/Tool": "WidePickaxe" } },
 
     { "Shop": "Blacksmith", "Section": "Premium tools", "Toggle": "EnablePremiumTools", "ItemId": "(T)IridiumAxe" },
     { "Shop": "Blacksmith", "Section": "Premium tools", "Toggle": "EnablePremiumTools", "ItemId": "(T)IridiumPickaxe" },

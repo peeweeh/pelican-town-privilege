@@ -39,12 +39,9 @@ namespace PelicanTownPrivilege.Services
             {
                 if (!ToolFootprint.CanTill(location, tile)) continue;
 
-                // CanTill only lets grass through here. The hoe clears grass with its own tool action, as the normal hoe does.
-                if (location.terrainFeatures.TryGetValue(tile, out TerrainFeature grass))
-                {
-                    if (grass.performToolAction(hoe, 0, tile)) location.terrainFeatures.Remove(tile);
-                    continue;
-                }
+                // The game's grass ignores hoes, so this clears a grass tuft and tills the tile in the same use.
+                if (location.terrainFeatures.TryGetValue(tile, out TerrainFeature feature) && feature is Grass)
+                    location.terrainFeatures.Remove(tile);
 
                 if (location.makeHoeDirt(tile))
                 {

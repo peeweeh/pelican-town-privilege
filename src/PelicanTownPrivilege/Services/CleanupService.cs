@@ -109,7 +109,7 @@ namespace PelicanTownPrivilege.Services
                 {
                     Tool = item,
                     Where = where,
-                    Kind = PrivilegeTools.IsPlanter(item) ? "Privilege Planter" : PrivilegeTools.IsWideHoe(item) ? "Privilege Hoe" : "unknown privilege item",
+                    Kind = PrivilegeTools.NameOf(item) ?? "unknown privilege item",
                     SeedId = PrivilegeTools.GetSeedId(item),
                     SeedCount = PrivilegeTools.GetSeedCount(item)
                 });

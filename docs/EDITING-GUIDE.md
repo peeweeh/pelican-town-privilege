@@ -46,8 +46,10 @@ Changes to `config.json` are picked up the next time the game starts. Changes to
 | Change the area size | `config.json`: `ToolWidth` and `ToolDepth` (1 to 15) | The tile rules stay the same. |
 | Change the seed-loading key | `config.json`: `LoadSeedsKey` | Use an SMAPI key name, such as `G` or `F5`. |
 | Let the wide tools work in town or the mines | `config.json`: `AllowWideToolsOutsideFarmAndGreenhouse` | Off by default. |
-| Change what counts as a valid tile | `Tools/ToolFootprint.cs` (`CanTill`, `TryGetPlantableSoil`) | Keep the protected-object rules. |
+| Change what counts as a valid tile | `Tools/ToolFootprint.cs` (`CanTill`, `TryGetPlantableSoil`, `CanCut`, `CanBreak`) | Keep the protected-object rules. |
 | Change how tilling behaves | `Services/WideHoeService.cs` | Energy formula is near the top of `Use`. |
+| Change scythe behaviour | `Services/WideScytheService.cs` | Runs after each normal swing, from the postfix on `MeleeWeapon.DoDamage` in `RuntimeHooks/ToolHooks.cs`. |
+| Change pickaxe behaviour | `Services/WidePickaxeService.cs` | Breaks stones, ore, and boulders. Boulder hits are kept in `boulderHits`. |
 | Change planting or seed loading | `Services/WidePlanterService.cs` | Load and unload are called from `HandleLoadSeedsKey`. |
 | Change the area preview colours | `Services/FootprintPreview.cs` | Green is valid, red is skipped. |
 | Change Junimo Hut rules | `Services/JunimoBuildingService.cs` | Only the `Junimo Hut` entry is touched. |

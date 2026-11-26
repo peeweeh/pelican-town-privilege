@@ -60,7 +60,7 @@ namespace PelicanTownPrivilege.Services
             }
             else
             {
-                Feedback.Show($"Nothing planted: no empty tilled soil in the area accepts {seedName}.");
+                Feedback.Show($"Nothing planted: no empty tilled soil in the area can grow {seedName} right now.");
             }
             return true;
         }

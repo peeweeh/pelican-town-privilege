@@ -7,8 +7,8 @@ using PelicanTownPrivilege.Tools;
 namespace PelicanTownPrivilege.RuntimeHooks
 {
     /// <summary>
-    /// Makes the Privilege Hoe and Privilege Planter work. Every hook first checks the mod's own tags, so all
-    /// other hoes and tools keep their vanilla behaviour.
+    /// Makes the privilege tools work. Every hook first checks the mod's own tags, so all other tools keep their
+    /// vanilla behaviour.
     /// </summary>
     [HarmonyPatch(typeof(Hoe), nameof(Hoe.DoFunction))]
     public static class HoeDoFunctionPatch
@@ -32,13 +32,50 @@ namespace PelicanTownPrivilege.RuntimeHooks
         }
     }
 
+    [HarmonyPatch(typeof(Pickaxe), nameof(Pickaxe.DoFunction))]
+    public static class PickaxeDoFunctionPatch
+    {
+        public static bool Prefix(Pickaxe __instance, GameLocation location, Farmer who)
+        {
+            try
+            {
+                if (HookServices.Config.EnableWidePickaxe && PrivilegeTools.IsWidePickaxe(__instance))
+                    return !HookServices.WidePickaxe.Use(location, who, __instance);
+            }
+            catch (Exception ex)
+            {
+                HookServices.Diagnostics.Error("The privilege pickaxe failed, so the normal pickaxe action ran instead", ex);
+            }
+
+            return true;
+        }
+    }
+
+    /// <summary>The scythe keeps its normal swing and combat. The area pass runs after the swing.</summary>
+    [HarmonyPatch(typeof(MeleeWeapon), nameof(MeleeWeapon.DoDamage))]
+    public static class MeleeDoDamagePatch
+    {
+        public static void Postfix(MeleeWeapon __instance, GameLocation location, Farmer who)
+        {
+            try
+            {
+                if (HookServices.Config.EnableWideScythe && PrivilegeTools.IsWideScythe(__instance) && who.IsLocalPlayer)
+                    HookServices.WideScythe.Use(location, who, __instance);
+            }
+            catch (Exception ex)
+            {
+                HookServices.Diagnostics.Error("The privilege scythe area failed, so only the normal swing ran", ex);
+            }
+        }
+    }
+
     [HarmonyPatch(typeof(Tool), nameof(Tool.DisplayName), MethodType.Getter)]
     public static class ToolDisplayNamePatch
     {
         public static void Postfix(Tool __instance, ref string __result)
         {
-            if (PrivilegeTools.IsWideHoe(__instance)) __result = PrivilegeTools.WideHoeName;
-            else if (PrivilegeTools.IsPlanter(__instance)) __result = PrivilegeTools.PlanterName;
+            string name = PrivilegeTools.NameOf(__instance);
+            if (name != null) __result = name;
         }
     }
 
