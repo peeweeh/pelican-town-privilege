@@ -10,8 +10,8 @@ namespace PelicanTownPrivilege.Configuration
         public const int DefaultPrice = 1;
         public const int DefaultJunimoHutPrice = 0;
         public const int DefaultStockLimit = 10;
-        public const int DefaultToolWidth = 10;
-        public const int DefaultToolDepth = 10;
+        public const int DefaultToolWidth = 9;
+        public const int DefaultToolDepth = 9;
         public const int MaxToolSize = 15;
         public const string DefaultLoadSeedsKey = "F";
 

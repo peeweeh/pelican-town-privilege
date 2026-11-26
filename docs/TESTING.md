@@ -31,7 +31,7 @@ Rows 1 to 10 follow the spec table in order. The spec's incubation row is split 
 | 10 | Incubation | Put a Dinosaur Egg in a coop incubator, then sleep. | The egg hatches after one night, with no extra days needed. | Not run |
 | 11 | Incubation (ostrich) | Put an Ostrich Egg in an Ostrich Incubator, then sleep. | The egg hatches after one night, with no extra days needed. This is separate from row 10, because the spec asks for the two systems to be tested apart. | Not run |
 | 12 | Dinosaur production | Feed and pet a dinosaur for several days. | A fed and cared-for dinosaur produces once per day. | Not run |
-| 13 | Wide hoe | Hold the Privilege Hoe on the farm and use it facing up, down, left, and right. | Each use tills up to 100 tiles (10 across and 10 deep) in front of you, starting one tile ahead. | Not run |
+| 13 | Wide hoe | Hold the Privilege Hoe on the farm and use it facing up, down, left, and right. | Each use tills up to 81 tiles (9 across and 9 deep) in front of you, starting one tile ahead. | Not run |
 | 14 | Wide planter | Load 3 parsnip seeds, then use the planter on a row of tilled soil. | 3 tiles are planted, and exactly 3 seeds are used. | Not run |
 | 15 | Protected objects | Use the wide hoe and planter next to crops, a tree, a chest, and a path. | None of those are removed or changed. | Not run |
 | 16 | Removal | Run `ptp_cleanup` (dry run), then `ptp_cleanup apply` on a copy of the save. | Seeds come back, tags are cleared, and the report says "Ready to load without the mod: YES". | Not run |
@@ -41,7 +41,12 @@ Rows 1 to 10 follow the spec table in order. The spec's incubation row is split 
 | 20 | Pickaxe outside the farm | Use the Privilege Pickaxe in the mines on a stone. | It breaks only that stone, as a normal Iridium pickaxe. There is no area and no message. | Not run |
 | 21 | Shop rows | Open Pierre's shop. | Privilege Scythe and Privilege Pickaxe are listed at 1g each. | Not run |
 | 22 | Wide hoe on weeds | Stand on weedy ground on the farm, and use the Privilege Hoe facing it. | Weeds are removed and the same tiles are tilled in that use. | Not run |
-| 23 | Twigs block tilling | Use the Privilege Hoe facing a twig. | The twig stays and its tile stays untilled. A normal Axe clears twigs. | Not run |
+| 23 | Twigs block tilling | Use the Privilege Hoe facing a twig. | The twig stays and its tile stays untilled. The Privilege Axe or a normal Axe clears twigs. | Not run |
+| 24 | Planter in spring | Load Parsnip Seeds, then use the Privilege Planter facing tilled soil in spring. | Each empty tilled tile in the area gets a parsnip, and the seed count drops. | Not run |
+| 25 | Privilege Axe | Stand near a tree, a stump or log, a twig, and a weed, then use the Privilege Axe facing each. | Trees fall after enough chops, stumps and logs break, and the twig and weed are removed. | Not run |
+| 26 | Axe leaves fruit trees | Stand next to a fruit tree and use the Privilege Axe on it. | The fruit tree stays. | Not run |
+| 27 | Axe outside the farm | Use the Privilege Axe on a tree in town. | It chops like a normal axe, with no area. | Not run |
+| 28 | Privilege Iridium Sprinkler | Place a privilege Iridium Sprinkler on the farm and look at the area it covers. Then wait a night. | The area is 9×9 with the sprinkler in the middle, and the tilled tiles in it are watered overnight. | Not run |
 
 ## Additional checks
 

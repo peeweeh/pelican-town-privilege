@@ -16,6 +16,8 @@ still holds them has to be cleaned before it can load without the mod. `ptp_clea
 | Privilege Planter | Behaves as a normal hoe, so it would till instead of plant. | Its stored seeds are returned to you by `ptp_cleanup apply`. Its tags are then removed. |
 | Privilege Scythe | Behaves as a normal scythe. | Its tags are removed by `ptp_cleanup apply`. |
 | Privilege Pickaxe | Behaves as a normal Iridium pickaxe. | Its tags are removed by `ptp_cleanup apply`. |
+| Privilege Axe | Behaves as a normal Iridium axe. | Its tags are removed by `ptp_cleanup apply`. |
+| Privilege Iridium Sprinkler | Waters the normal Iridium Sprinkler area. | Its tag is removed by `ptp_cleanup apply` when it is in your inventory or a chest. A placed sprinkler is not scanned, so it keeps its tag. The game ignores the tag. |
 | Trash-can upgrade | Stays at Iridium. | The upgrade is the game's own state. Nothing to reverse. |
 
 ## Running the cleanup

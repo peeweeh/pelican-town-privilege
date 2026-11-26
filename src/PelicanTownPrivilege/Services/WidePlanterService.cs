@@ -41,12 +41,13 @@ namespace PelicanTownPrivilege.Services
                 return true;
             }
 
+            string plantId = PrivilegeTools.PlantingId(seedId);
             int planted = 0;
             foreach (Vector2 tile in ToolFootprint.Compute(who, config.ToolWidth, config.ToolDepth))
             {
                 if (planted >= stored) break;
-                if (!ToolFootprint.TryGetPlantableSoil(location, tile, seedId, out HoeDirt soil)) continue;
-                if (soil.plant(seedId, who, isFertilizer: false)) planted++;
+                if (!ToolFootprint.TryGetPlantableSoil(location, tile, plantId, out HoeDirt soil)) continue;
+                if (soil.plant(plantId, who, isFertilizer: false)) planted++;
             }
 
             int remaining = stored - planted;

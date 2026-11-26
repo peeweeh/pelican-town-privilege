@@ -50,6 +50,8 @@ Changes to `config.json` are picked up the next time the game starts. Changes to
 | Change how tilling behaves | `Services/WideHoeService.cs` | Energy formula is near the top of `Use`. |
 | Change scythe behaviour | `Services/WideScytheService.cs` | Runs after each normal swing, from the postfix on `MeleeWeapon.DoDamage` in `RuntimeHooks/ToolHooks.cs`. |
 | Change pickaxe behaviour | `Services/WidePickaxeService.cs` | Breaks stones, ore, and boulders. Boulder hits are kept in `boulderHits`. |
+| Change axe behaviour | `Services/WideAxeService.cs` | Chops trees, stumps, logs, twigs, and weeds. Runs from the prefix on `Axe.DoFunction` in `RuntimeHooks/ToolHooks.cs`. |
+| Change sprinkler area | `Tools/ToolFootprint.cs` (`SprinklerRadius`) | The privilege Iridium Sprinkler's radius is set by a postfix on `Object.GetModifiedRadiusForSprinkler` in `RuntimeHooks/ToolHooks.cs`. |
 | Change planting or seed loading | `Services/WidePlanterService.cs` | Load and unload are called from `HandleLoadSeedsKey`. |
 | Change the area preview colours | `Services/FootprintPreview.cs` | Green is valid, red is skipped. |
 | Change Junimo Hut rules | `Services/JunimoBuildingService.cs` | Only the `Junimo Hut` entry is touched. |

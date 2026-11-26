@@ -51,6 +51,25 @@ namespace PelicanTownPrivilege.RuntimeHooks
         }
     }
 
+    [HarmonyPatch(typeof(Axe), nameof(Axe.DoFunction))]
+    public static class AxeDoFunctionPatch
+    {
+        public static bool Prefix(Axe __instance, GameLocation location, int power, Farmer who)
+        {
+            try
+            {
+                if (HookServices.Config.EnableWideAxe && PrivilegeTools.IsWideAxe(__instance))
+                    return !HookServices.WideAxe.Use(location, who, __instance, power);
+            }
+            catch (Exception ex)
+            {
+                HookServices.Diagnostics.Error("The privilege axe failed, so the normal axe action ran instead", ex);
+            }
+
+            return true;
+        }
+    }
+
     /// <summary>The scythe keeps its normal swing and combat. The area pass runs after the swing.</summary>
     [HarmonyPatch(typeof(MeleeWeapon), nameof(MeleeWeapon.DoDamage))]
     public static class MeleeDoDamagePatch
@@ -65,6 +84,24 @@ namespace PelicanTownPrivilege.RuntimeHooks
             catch (Exception ex)
             {
                 HookServices.Diagnostics.Error("The privilege scythe area failed, so only the normal swing ran", ex);
+            }
+        }
+    }
+
+    /// <summary>The privilege Iridium Sprinkler waters a 9×9 square. The game reads this radius when it waters and when it draws the area.</summary>
+    [HarmonyPatch(typeof(StardewValley.Object), nameof(StardewValley.Object.GetModifiedRadiusForSprinkler))]
+    public static class SprinklerRadiusPatch
+    {
+        public static void Postfix(StardewValley.Object __instance, ref int __result)
+        {
+            try
+            {
+                if (HookServices.Config.EnableWideSprinkler && PrivilegeTools.IsWideSprinkler(__instance))
+                    __result = ToolFootprint.SprinklerRadius;
+            }
+            catch (Exception ex)
+            {
+                HookServices.Diagnostics.Error("The privilege sprinkler radius failed, so the normal radius ran", ex);
             }
         }
     }

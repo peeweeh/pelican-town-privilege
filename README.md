@@ -20,10 +20,11 @@ The principle: keep the farming, collecting, relationships, and exploration. Rem
 
 Also:
 
-- **Wide tools.** In a 10×10 area in front of you, the Privilege Hoe clears grass and weeds and tills, the Privilege
+- **Wide tools.** In a 9×9 area in front of you, the Privilege Hoe clears grass and weeds and tills, the Privilege
   Planter plants, the Privilege Scythe cuts grass and weeds and harvests, and the Privilege Pickaxe breaks stones and
-  boulders. Stones, boulders, and twigs block tilling: clear stones with the Pickaxe and twigs with a normal Axe. The
+  boulders. The Privilege Axe chops trees and stumps and clears twigs and weeds. Stones and boulders block tilling: clear them with the Pickaxe. The
   area rotates with your facing, and a preview shows which tiles will be used.
+- **Privilege Iridium Sprinkler.** Waters a 9×9 area, with the sprinkler in the middle.
 - **Overnight incubation.** Eggs in coop incubators and Ostrich Incubators finish when the day ends.
 - **Daily Dinosaur eggs.** A fed, cared-for dinosaur produces once a day.
 - **Save cleanup.** `ptp_cleanup` returns planter seeds and clears the mod's tags, so a save can load without the mod.

@@ -12,6 +12,7 @@ namespace PelicanTownPrivilege.RuntimeHooks
         public static WidePlanterService Planter { get; set; }
         public static WideScytheService WideScythe { get; set; }
         public static WidePickaxeService WidePickaxe { get; set; }
+        public static WideAxeService WideAxe { get; set; }
         public static PremiumToolService PremiumTools { get; set; }
     }
 }

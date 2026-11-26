@@ -9,23 +9,27 @@ All notable changes to this project are recorded here. The format follows
 
 - Crop seeds at Pierre's privilege counter: the crop seeds Pierre normally sells, at 1g in any season. Turn them off with `EnableCropSeeds`.
 - Big Stone Chest at Pierre's privilege counter, 1g, in the storage section. Turn it off with `EnableStorageStock`.
-- Privilege Scythe at Pierre's privilege counter, 1g. After each swing, it cuts grass, clears weeds, and harvests ripe scythe crops across the 10×10 area. Soil is never removed, and the normal swing and combat are unchanged. Turn it off with `EnableWideScythe`.
-- Privilege Pickaxe at Pierre's privilege counter, 1g. It is built on the Iridium Pickaxe, so it can break boulders. One use breaks every stone, ore node, and boulder in the 10×10 area. Soil, crops, trees, and crafted objects are never touched. Outside the farm and greenhouse it works as a normal pickaxe. Turn it off with `EnableWidePickaxe`.
+- Privilege Scythe at Pierre's privilege counter, 1g. After each swing, it cuts grass, clears weeds, and harvests ripe scythe crops across the 9×9 area. Soil is never removed, and the normal swing and combat are unchanged. Turn it off with `EnableWideScythe`.
+- Privilege Pickaxe at Pierre's privilege counter, 1g. It is built on the Iridium Pickaxe, so it can break boulders. One use breaks every stone, ore node, and boulder in the 9×9 area. Soil, crops, trees, and crafted objects are never touched. Outside the farm and greenhouse it works as a normal pickaxe. Turn it off with `EnableWidePickaxe`.
+- Privilege Axe at Pierre's privilege counter, 1g. It is built on the Iridium Axe. One use chops every tree in the 9×9 area, breaks every stump and log, and clears every twig and weed. Fruit trees, crops, soil, buildings, and crafted objects are never touched. Outside the farm and greenhouse it works as a normal axe. Turn it off with `EnableWideAxe`.
+- Privilege Iridium Sprinkler at Pierre's watering counter, 1g. It waters a 9×9 area with the sprinkler in the middle, instead of the Iridium Sprinkler's 5×5. Turn the area off with `EnableWideSprinkler`.
 
 ### Changed
 
-- The Privilege Hoe and Planter cover a 10×10 area (`ToolWidth` × `ToolDepth`, both default 10) instead of a 9×1 strip.
+- The Privilege Hoe, Planter, Scythe, Pickaxe, and Axe cover a 9×9 area (`ToolWidth` × `ToolDepth`, both default 9) instead of a 9×1 strip.
 - `ToolWidth` no longer has to be odd. Even widths reach one tile further right (or down) than left (or up).
 - The Big Chest row now uses its correct item ID, `(BC)BigChest`. Before, it used the Stone Chest ID and relied on the mod's name lookup.
 - The Junimo Hut costs 0g (was 1g). `JunimoHutPrice` now defaults to `0`.
-- `ToolWidth` and `ToolDepth` now apply to all four wide-area tools: hoe, planter, scythe, and pickaxe.
+- `ToolWidth` and `ToolDepth` now apply to all five wide-area tools: hoe, planter, scythe, pickaxe, and axe.
 - The planter's failure message says the soil cannot grow the seed right now. Before, it said no tilled soil accepted the seed, which hid season and location limits.
+- The wide tools default to 9×9 (was 10×10). An odd size puts a middle tile under the player.
 
 ### Fixed
 
 - The Junimo Hut was missing from Robin's construction menu. The game lists each building only under its builder, and the hut's builder was not Robin. The mod now sets it to Robin.
+- The Privilege Planter could not plant any seed. It passed the qualified item ID (for example `(O)472`) to the game's planting code, which expects the plain ID (`472`). Planting now uses the plain ID.
 - The Privilege Hoe never tilled grass. The game's grass ignores hoes, so planting had no tilled soil to use. The hoe now clears a grass tuft and tills it in the same use. Grass cleared by the hoe drops nothing.
-- The Privilege Hoe skipped weedy tiles. Weeds in the area are now removed and tilled in the same use, like grass. Stones, boulders, and twigs still block tilling.
+- The Privilege Hoe skipped weedy tiles. Weeds in the area are now removed and tilled in the same use, like grass. Stones and boulders still block tilling. The Privilege Axe clears twigs.
 
 ## [0.1.0] - 2026-11-23
 

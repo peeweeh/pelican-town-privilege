@@ -13,6 +13,9 @@ namespace PelicanTownPrivilege.Tools
     {
         public const int TileSize = 64;
 
+        /// <summary>Radius of the privilege Iridium Sprinkler's area: 4 tiles each way is a 9×9 square with the sprinkler in the middle.</summary>
+        public const int SprinklerRadius = 4;
+
         /// <summary>
         /// The area starts one tile in front of the player and extends <paramref name="depth"/> tiles forward.
         /// Across, it is <paramref name="width"/> tiles wide and centred on the player. An even width cannot be
@@ -72,7 +75,10 @@ namespace PelicanTownPrivilege.Tools
             return true;
         }
 
-        /// <summary>True when the tile is empty tilled soil that accepts this seed (season and crop rules included).</summary>
+        /// <summary>
+        /// True when the tile is empty tilled soil that accepts this seed. The seed must be the plain item ID the game
+        /// uses (see PrivilegeTools.PlantingId). Season and crop rules apply.
+        /// </summary>
         public static bool TryGetPlantableSoil(GameLocation location, Vector2 tile, string seedId, out HoeDirt soil)
         {
             soil = null;
@@ -102,6 +108,23 @@ namespace PelicanTownPrivilege.Tools
             if (!location.isTileOnMap(tile)) return false;
 
             return location.objects.TryGetValue(tile, out StardewValley.Object item) && (item.IsBreakableStone() || item.Name.Contains("Boulder"));
+        }
+
+        /// <summary>True when the axe acts on this tile: a tree (fruit trees excluded), a twig, a weed, or a stump or log.</summary>
+        public static bool CanChop(GameLocation location, Vector2 tile)
+        {
+            if (!location.isTileOnMap(tile)) return false;
+            if (location.buildings.Any(building => building.occupiesTile(tile))) return false;
+
+            if (location.terrainFeatures.TryGetValue(tile, out TerrainFeature feature) && feature is Tree)
+                return true;
+
+            if (location.objects.TryGetValue(tile, out StardewValley.Object item) && (item.IsTwig() || item.IsWeeds()))
+                return true;
+
+            int x = (int)tile.X * TileSize;
+            int y = (int)tile.Y * TileSize;
+            return location.resourceClumps.Any(clump => clump.getBoundingBox().Contains(x, y));
         }
     }
 }

@@ -20,12 +20,16 @@ namespace PelicanTownPrivilege.Tools
         public const string PlanterKind = "WidePlanter";
         public const string WideScytheKind = "WideScythe";
         public const string WidePickaxeKind = "WidePickaxe";
+        public const string WideAxeKind = "WideAxe";
+        public const string WideSprinklerKind = "WideSprinkler";
         public const string UpgradeTrashCanAction = "UpgradeTrashCan";
 
         public const string WideHoeName = "Privilege Hoe";
         public const string PlanterName = "Privilege Planter";
         public const string WideScytheName = "Privilege Scythe";
         public const string WidePickaxeName = "Privilege Pickaxe";
+        public const string WideAxeName = "Privilege Axe";
+        public const string WideSprinklerName = "Privilege Iridium Sprinkler";
 
         public static bool IsWideHoe(Item item) => item is Hoe && HasTag(item, KindKey, WideHoeKind);
 
@@ -35,6 +39,10 @@ namespace PelicanTownPrivilege.Tools
 
         public static bool IsWidePickaxe(Item item) => item is Pickaxe && HasTag(item, KindKey, WidePickaxeKind);
 
+        public static bool IsWideAxe(Item item) => item is Axe && HasTag(item, KindKey, WideAxeKind);
+
+        public static bool IsWideSprinkler(Item item) => item is StardewValley.Object && HasTag(item, KindKey, WideSprinklerKind);
+
         /// <summary>The display name of a privilege tool, or null for any other item.</summary>
         public static string NameOf(Item item)
         {
@@ -42,6 +50,8 @@ namespace PelicanTownPrivilege.Tools
             if (IsPlanter(item)) return PlanterName;
             if (IsWideScythe(item)) return WideScytheName;
             if (IsWidePickaxe(item)) return WidePickaxeName;
+            if (IsWideAxe(item)) return WideAxeName;
+            if (IsWideSprinkler(item)) return WideSprinklerName;
             return null;
         }
 
@@ -78,6 +88,15 @@ namespace PelicanTownPrivilege.Tools
 
             planter.modData[SeedIdKey] = seedId;
             planter.modData[SeedCountKey] = count.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// The plain item ID the game's planting code expects, for example "472" for Parsnip Seeds. The stored seed is
+        /// qualified ("(O)472"), so the planter converts it before every planting call. Null if the item is unknown.
+        /// </summary>
+        public static string PlantingId(string qualifiedSeedId)
+        {
+            return string.IsNullOrEmpty(qualifiedSeedId) ? null : ItemRegistry.GetData(qualifiedSeedId)?.ItemId;
         }
 
         /// <summary>The seed's display name, or the raw ID if the game does not know it.</summary>

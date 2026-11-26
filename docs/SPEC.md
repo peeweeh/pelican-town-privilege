@@ -98,7 +98,7 @@ must apply the appropriate player upgrade instead of creating an unusable invent
 
 ## 4. Wide-area farming tools
 
-Your original request was "nine-wide tiller and planter." v0.1 built that as a **9×1 strip**. Version 0.2 changes it to a **10×10 area** at your request. Its size is set by `ToolWidth` and `ToolDepth`.
+Your original request was "nine-wide tiller and planter." v0.1 built that as a **9×1 strip**. Version 0.2 changes it to a **9×9 area** at your request. Its size is set by `ToolWidth` and `ToolDepth`.
 
 ### Privilege Hoe
 
@@ -106,7 +106,7 @@ Your original request was "nine-wide tiller and planter." v0.1 built that as a *
 | --- | --- |
 | Purchase location | Pierre |
 | Price | 1g |
-| Footprint | 10 tiles across and 10 deep, starting one tile in front of the player |
+| Footprint | 9 tiles across and 9 deep, starting one tile in front of the player |
 | Orientation | Rotates with player facing |
 | Charge requirement | None |
 | Energy | One normal hoe-use cost per activation |
@@ -122,7 +122,7 @@ Protected targets:
 - Existing crops.
 - Planted trees.
 - Buildings, machines, paths, and fences.
-- Stones, ore, and boulders. The Privilege Pickaxe breaks these. Twigs need a normal Axe, as in the base game.
+- Stones, ore, and boulders. The Privilege Pickaxe breaks these. The Privilege Axe clears twigs.
 - Occupied or otherwise invalid tiles.
 
 The footprint should be visible before use.
@@ -133,7 +133,7 @@ The footprint should be visible before use.
 | --- | --- |
 | Purchase location | Pierre |
 | Price | 1g |
-| Footprint | Same 10×10 area |
+| Footprint | Same 9×9 area |
 | Seed selection | Explicit "Load seeds" interaction |
 | Seed cost | One seed per successfully planted tile |
 | Valid target | Empty, tilled soil that accepts the selected seed |
@@ -153,7 +153,7 @@ No seed duplication, free planting, or accidental replacement of growing crops.
 | --- | --- |
 | Purchase location | Pierre |
 | Price | 1g |
-| Footprint | Same 10×10 area |
+| Footprint | Same 9×9 area |
 | Orientation | Rotates with player facing |
 | Energy | None added. The normal swing's own cost applies, once per swing |
 | Valid locations | Farm and greenhouse by default. Elsewhere the normal scythe runs. |
@@ -169,12 +169,35 @@ The normal swing and its combat are unchanged.
 | Purchase location | Pierre |
 | Price | 1g |
 | Base tool | Iridium Pickaxe, so boulders can break |
-| Footprint | Same 10×10 area |
+| Footprint | Same 9×9 area |
 | Orientation | Rotates with player facing |
 | Energy | One normal pickaxe-use cost per activation |
 | Valid locations | Farm and greenhouse by default. Elsewhere it works as a normal Iridium pickaxe. |
 | What it does | Breaks every stone, ore node, and boulder in the area. A boulder breaks after four hits while it stays in the area. |
 | Protected targets | Soil, crops, trees, stumps, logs, and crafted objects are never touched. |
+
+### Privilege Axe
+
+| Setting | Behaviour |
+| --- | --- |
+| Purchase location | Pierre |
+| Price | 1g |
+| Base tool | Iridium Axe |
+| Footprint | Same 9×9 area |
+| Orientation | Rotates with player facing |
+| Energy | One normal axe-use cost per activation |
+| Valid locations | Farm and greenhouse by default. Elsewhere it works as a normal axe. |
+| What it does | Chops every tree, breaks every stump and log, and clears every twig and weed in the area |
+| Protected targets | Fruit trees, crops, soil, buildings, and crafted objects are never touched. |
+
+### Privilege Iridium Sprinkler
+
+| Setting | Behaviour |
+| --- | --- |
+| Purchase location | Pierre, in the watering section |
+| Price | 1g |
+| Watering area | 9×9 square with the sprinkler in the middle, instead of the vanilla Iridium Sprinkler's smaller area |
+| Behaviour switch | `EnableWideSprinkler`. The shop row is controlled by `EnableWateringStock`. |
 
 ## 5. Junimo Huts from the beginning
 
@@ -290,8 +313,10 @@ Illustrative configuration:
   "EnableWidePlanter": true,
   "EnableWideScythe": true,
   "EnableWidePickaxe": true,
-  "ToolWidth": 10,
-  "ToolDepth": 10,
+  "EnableWideAxe": true,
+  "EnableWideSprinkler": true,
+  "ToolWidth": 9,
+  "ToolDepth": 9,
   "AllowWideToolsOutsideFarmAndGreenhouse": false,
 
   "EnableEarlyJunimoHuts": true,
@@ -330,6 +355,7 @@ PelicanTownPrivilege
 ├── WidePlanterService
 ├── WideScytheService
 ├── WidePickaxeService
+├── WideAxeService
 ├── JunimoBuildingService
 ├── AnimalService
 ├── IncubationService
@@ -386,7 +412,7 @@ save to apply shop discounts.
 | Blue Chicken | Purchasable early and assigned to a valid coop |
 | Incubation | Eligible eggs hatch after one overnight transition |
 | Dinosaur production | Eligible fed dinosaur produces at the configured daily interval |
-| Wide hoe | Affects only valid tiles within the 10×10 area |
+| Wide hoe | Affects only valid tiles within the 9×9 area |
 | Wide planter | Consumes exactly one seed per successful planting |
 | Protected objects | No crops, structures, or machines are destroyed |
 | Removal | Stored seeds recovered and custom tool state cleaned successfully |

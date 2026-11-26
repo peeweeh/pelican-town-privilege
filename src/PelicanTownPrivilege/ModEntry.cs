@@ -50,6 +50,7 @@ namespace PelicanTownPrivilege
             HookServices.Planter = planter;
             HookServices.WideScythe = new WideScytheService(config);
             HookServices.WidePickaxe = new WidePickaxeService(config);
+            HookServices.WideAxe = new WideAxeService(config);
             HookServices.PremiumTools = new PremiumToolService(diagnostics);
             new Harmony(ModManifest.UniqueID).PatchAll(typeof(ModEntry).Assembly);
 

@@ -19,10 +19,11 @@ src/PelicanTownPrivilege/
 ├── Services/
 │   ├── ShopService.cs          Adds catalog rows to Data/Shops; draws Pierre's price line and gift warning
 │   ├── PremiumToolService.cs   Applies the Iridium Trash Can upgrade at purchase
-│   ├── WideHoeService.cs       Privilege Hoe: 10x10 tilling, clears grass first
+│   ├── WideHoeService.cs       Privilege Hoe: 9x9 tilling, clears grass and weeds first
 │   ├── WidePlanterService.cs   Privilege Planter: loading, unloading, and area planting
 │   ├── WideScytheService.cs    Privilege Scythe: area cutting and harvesting after each swing
 │   ├── WidePickaxeService.cs   Privilege Pickaxe: area breaking of stones, ore, and boulders
+│   ├── WideAxeService.cs       Privilege Axe: area chopping of trees, stumps, logs, twigs, and weeds
 │   ├── FootprintPreview.cs     Draws the area over the world while a privilege tool is held
 │   ├── JunimoBuildingService.cs Edits the Junimo Hut entry in Data/Buildings
 │   ├── AnimalService.cs        Edits Blue Chicken and Dinosaur entries in Data/FarmAnimals
@@ -68,6 +69,8 @@ Shop rows are only appended. Existing rows, and the sale values in `Data/Objects
 | Privilege Planter planting | Planter is used (same prefix) | `WidePlanterService.Plant` |
 | Privilege Scythe area | Normal scythe swing finishes (Harmony postfix on `MeleeWeapon.DoDamage`) | `WideScytheService.Use` |
 | Privilege Pickaxe breaking | Pickaxe is used (Harmony prefix on `Pickaxe.DoFunction`) | `WidePickaxeService.Use` |
+| Privilege Axe chopping | Axe is used (Harmony prefix on `Axe.DoFunction`) | `WideAxeService.Use` |
+| Privilege Iridium Sprinkler area | Sprinkler radius is read (Harmony postfix on `Object.GetModifiedRadiusForSprinkler`) | `SprinklerRadiusPatch` in `ToolHooks.cs` |
 | Load and unload seeds | Load key pressed (`ButtonPressed`) | `WidePlanterService.HandleLoadSeedsKey` |
 | Area preview | Every frame, only while a privilege tool is held (`RenderedWorld`) | `FootprintPreview.Draw` |
 | Names and seed tooltip | Item name and description are read (Harmony postfixes) | `ToolHooks.cs` |
@@ -83,7 +86,7 @@ Shop rows are only appended. Existing rows, and the sale values in `Data/Objects
 The mod writes no save-file data of its own. Its only persistent state is:
 
 - **Item tags** in `Item.modData`, all with the key prefix `PelicanTownPrivilege/`:
-  - `PelicanTownPrivilege/Tool` is `WideHoe`, `WidePlanter`, `WideScythe`, or `WidePickaxe`. Set by the shop row.
+  - `PelicanTownPrivilege/Tool` is `WideHoe`, `WidePlanter`, `WideScythe`, `WidePickaxe`, `WideAxe`, or `WideSprinkler`. Set by the shop row.
   - `PelicanTownPrivilege/SeedId` and `PelicanTownPrivilege/SeedCount` hold the planter's stored seeds.
   - `PelicanTownPrivilege/Action` is `UpgradeTrashCan` on the sentinel shop item. It is never put in a player's inventory.
 - **Shop row IDs** of the form `PelicanTownPrivilege.<Name>`. These exist only in the shop table, which the game
@@ -117,19 +120,21 @@ Item IDs use the game's qualified format:
 These were judgement calls made while building v0.1. Change them in code or config if you disagree.
 
 - **Tools are base items with tags, not custom classes.** The Privilege Hoe and Planter are ordinary `Hoe` items, the
-  Privilege Scythe is an ordinary scythe, and the Privilege Pickaxe is an ordinary Iridium pickaxe. Each has `modData`
+  Privilege Scythe is an ordinary scythe, and the Privilege Pickaxe is an ordinary Iridium pickaxe, and the Privilege Axe is an ordinary Iridium axe. Each has `modData`
   tags. Without the mod they act as their normal selves, so nothing is lost.
 - **Outside the farm and greenhouse, the hoe and planter do nothing** and show a message. No energy is used. The scythe
   and pickaxe act as their normal selves there.
 - **Energy:** the Privilege Hoe and Pickaxe use the same formula as `Hoe.DoFunction` and `Pickaxe.DoFunction`, once per
   activation. The planter uses no energy, because the spec gives it none. The scythe adds none: the normal swing's cost applies.
-- **Area contents:** the hoe removes grass and weeds itself and tills in the same use. Grass is cleared directly, because the game's grass ignores hoes. Neither drops anything. The scythe cuts grass, clears weeds, and harvests scythe crops. The pickaxe breaks stones, ore, and boulders. Neither the hoe nor the pickaxe removes soil, and neither touches crops, trees, paths, buildings, crafted objects, or characters.
+- **Area contents:** the hoe removes grass and weeds itself and tills in the same use. Grass is cleared directly, because the game's grass ignores hoes. Neither drops anything. The scythe cuts grass, clears weeds, and harvests scythe crops. The pickaxe breaks stones, ore, and boulders. The axe chops trees, stumps, and logs, and clears twigs and weeds. It never touches fruit trees. Neither the hoe nor the pickaxe removes soil, and neither touches crops, trees, paths, buildings, crafted objects, or characters.
+- **Seed IDs:** the planter stores the qualified seed ID (for example `(O)472`), but the game's planting code expects the plain ID (`472`). `PrivilegeTools.PlantingId` converts it before every planting call.
+- **Sprinkler area:** the privilege Iridium Sprinkler's radius is set to 4 by a postfix on the game's radius method, so its area is 9×9 with the sprinkler in the middle. The watering code itself is unchanged.
 - **Seed loading:** hold a seed stack and press the Load key to put the whole stack in your planter. Hold the planter
   and press the key to take everything back out. A planter holds one seed type at a time.
 - **Planter seeds can't be trashed** while the planter holds any. Use the unload key first. Selling is not blocked yet (see Known unknowns).
 - **Iridium Trash Can** sets the trash-can level to Iridium straight away. The shop row is hidden once the player is
   already at Iridium, using the `PLAYER_HAS_TRASH_CAN_LEVEL` game state query.
-- **Area size:** `ToolWidth` and `ToolDepth` are whole numbers from 1 to 15 (default 10). An even width can't be centred exactly, so it reaches one tile further right (or down) than left (or up).
+- **Area size:** `ToolWidth` and `ToolDepth` are whole numbers from 1 to 15 (default 9, so the middle tile is under the player). An even width can't be centred exactly, so it reaches one tile further right (or down) than left (or up).
 - **Overnight incubation** sets an egg's remaining time to zero when the day ends. Only eggs already in an incubator
   are affected. The coop path and the Ostrich Incubator path are separate code.
 - **Junimo Hut:** its builder is set to Robin, so Robin's menu lists it (the game lists each building only under its builder). Its Wizard build condition is cleared, its cost comes from config (`JunimoHutPrice`, default `0`), and its material list is emptied
